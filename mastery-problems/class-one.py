@@ -22,6 +22,6 @@ monthly_payment = 12
 
 # ƥ = rP / n * [1-(1+r/n)-nt]
 amortization = (rate*loan)/monthly_payment *(1-(1+rate/monthly_payment)**-(monthly_payment*time))
-interest = monthly_payment*amortization
+interest = monthly_payment*amortization*time-loan
 print(amortization)
 print(interest)
