@@ -1,7 +1,3 @@
-#Math Scripts
-#Func Def
-#Elif Skill
-#use DoctStrings for File
 #prompt user for velocity and angle
 #use formula to calculate height
 import math
