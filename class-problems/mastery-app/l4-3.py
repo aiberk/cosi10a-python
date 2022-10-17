@@ -10,3 +10,12 @@
 # How old are you? 67
 # Your ticket is $10
 # ]
+
+age = int(input("what is your age in year?"))
+
+if (age <= 12):
+    print("Kid ticket is $10")
+elif(age >12 and age <65):
+    print("Adult ticket is $15")
+else:
+    print("Senior ticket is $10")
