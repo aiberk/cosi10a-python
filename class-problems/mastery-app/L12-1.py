@@ -3,10 +3,13 @@
 
 def print_long_words(values):
     ''' prints the long words in a list, values, one per line with its index '''
+
     index = 0
     while index<len(values):
-        print(index, values[index])
+        if(len(values[index])>=4):
+            print(index, values[index])
         index = index + 1
+        
 
 words = "this is a short sentence".split()
 
