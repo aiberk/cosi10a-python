@@ -15,4 +15,30 @@
 # even_vals=[]
 # odd_vals=[]
 # and append val to the appropriate one in the loop
-            
+import random
+rgnList=[40, 68, 71, 91, 29, 37, 9, 37, 77, 53]
+oddVals=[]
+evenVals=[]
+def seperateOddsAndEvens(list):
+    '''Gets list of numbers and separates them between odd and even'''
+    for x in list:
+        if(x%2==0):
+            evenVals.append(x)
+        else:
+            oddVals.append(x)
+    print("Original List:",list)
+    print("Odd Values:",oddVals)
+    print("Even Values:",evenVals)
+
+def randomNumberList():
+    '''creates a list of 10 random integers from 0-100'''
+    list =[]
+    i=0
+    while(i<10):
+        x=random.randint(0,100)
+        list.append(x)
+        i+=1
+    print(list)
+
+# randomNumberList()
+seperateOddsAndEvens(rgnList)
