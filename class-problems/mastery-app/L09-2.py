@@ -5,3 +5,13 @@
 # 3 9
 # ....
 # 100 10000
+
+def squaresUpto(number):
+    i=0
+    while(i<=number):
+        print(i,i**2)
+        i+=1
+squaresUpto(101)
+
+# for i in 100:
+# print(i," ",i**2)
