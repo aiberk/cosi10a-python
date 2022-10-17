@@ -10,3 +10,13 @@
 # call like this
 # > euro-date("05/21/2022")
 # "21.05.2022"
+
+
+def euroDate(date):
+    ''' converts us dates to european format '''
+    withOutSlash= date.split('/')
+    result = withOutSlash[1]+'.'+withOutSlash[0]+'.'+withOutSlash[2]
+    print(result)
+    
+date ="05/15/2022"
+euroDate(date)
