@@ -4,3 +4,24 @@
 # else say they won ...
 
 # (Hint: look up the keyword "break" in Python)
+
+def guessing_game():
+    answer = randint(0,1000)
+    print('I am thinking of a number in the range 0 to 1000')
+    print('try to guess it')
+    guess = int(input('> '))
+    count = 0
+    while guess != answer:
+        if count > 10:
+            break
+        if guess<answer:
+            print(guess,'is too low. Try again.')
+        elif guess>answer:
+            print(guess,'is too high. Try again.')
+        guess = int(input('> '))
+        count = count + 1
+    
+    if count>10:
+        print('you lose!')
+    elif count<10:
+        print('you win!')
