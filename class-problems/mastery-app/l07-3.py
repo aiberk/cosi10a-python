@@ -5,3 +5,9 @@
 # mph2fps(60) --> 88  because 60 miles per hour is 88 feet per second
 # mph2fps(0) --> 0
 # mph2fps(30) --> 44 
+
+def mph2fps(speed):
+    result = (speed*5280)/3600
+    print(int(result))
+
+mph2fps(60)

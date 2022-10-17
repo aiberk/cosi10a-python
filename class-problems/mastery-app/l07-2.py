@@ -4,3 +4,10 @@
 
 # enter temp in F:  212
 # temp in C is 100
+
+
+def farenheit2celsius():
+    input_temperature = int(input("Enter temp in F:"))
+    result = (input_temperature-32)*(5/9)
+    print("Temp in C is",result)
+farenheit2celsius()

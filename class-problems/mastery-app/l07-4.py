@@ -1,4 +1,3 @@
-
 # write a function triangleArea(a,b,c)
 # which returns the area of a triangle whose three sides have length a,b, and c.
 
