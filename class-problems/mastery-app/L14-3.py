@@ -6,9 +6,16 @@
 '''
 crossword helper
 '''
-
+import re
+targetWordsList=[]
 wordfile = open('10000.txt','r')
 wordstring = wordfile.read()
 words = wordstring.split()
-print('there are',len(words),'words')
-print(words)
+for word in words:
+    x = re.findall("^.{1}t.*e", word)
+    if(x):
+        targetWordsList.append(x)
+
+print(targetWordsList)
+print('There are',len(targetWordsList),'words')
+
