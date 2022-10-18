@@ -4,16 +4,14 @@
 # craps.py is an interactive program to play a simple version of the dice game craps
 
 # '''
-# from random import randint   # randint(a,b) returns random integer between a, b inclusive
+import random   # randint(a,b) returns random integer between a, b inclusive
 
-# def roll2dice():
-#     ''' simulates rolling 2 dice and returns the sum of the dice ... '''
+def roll2dice():
+    ''' simulates rolling 2 dice and returns the sum of the dice ... '''
+    die1=random.randint(1, 6)
+    die2=random.randint(1, 6)
+    print(die1+die2)
 
+roll2dice()
 
-# For example, if you load this module you can do the following:
-# > roll2dice()
-# 7
-# > roll2dice()
-# 2
-# ....
     
