@@ -3,16 +3,12 @@
 # Hint: use a for loop to go through all the words, check 
 # if the conditions are met, and print if so ...
 
-# '''
-# crossword helper
-# '''
+'''
+crossword helper
+'''
 
-# wordfile = open('wordlist.10000.txt','r')
-# wordstring = wordfile.read()
-# words = wordstring.split()
-# print('there are',len(words),'words')
-
-
-
-# for w in words:
-#    .....
+wordfile = open('10000.txt','r')
+wordstring = wordfile.read()
+words = wordstring.split()
+print('there are',len(words),'words')
+print(words)
