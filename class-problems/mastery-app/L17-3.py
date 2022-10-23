@@ -22,17 +22,6 @@ def play1game():
         print("You Win")
     else:
         print("You Loose")
-    # code to look at value of roll and print 'you lose' for 2,3,12,
-    # 'you win' for 7,11
-    # f'you must roll a {roll} before a 7' for any other roll
+ 
 play1game()
-# For example,
-# > play1game()
-# you rolled a 3 and 4
-# you win!
-# >play1game()
-# you rolled a 1 and 2
-# you lose!
-# >play1game()
-# you rolled a 3 and 3
-# you have to roll a 6 before a 7 to win
+
