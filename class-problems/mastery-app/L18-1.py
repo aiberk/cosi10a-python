@@ -23,9 +23,11 @@ def play1game():
     roll1=roll2dice()
     if roll1== 2 or roll1==3 or roll1==12:
         print('you lose')
+        play_craps("Want to play again? (\"Y\" for yes, \"N\" for no)  ")
         return False
     elif roll1==7 or roll1==11:
         print('you win')
+        play_craps("Want to play again? (\"Y\" for yes, \"N\" for no)  ")
         return True
     else:
         print(f'you must roll a {roll1} before a 7')
@@ -39,19 +41,19 @@ def play_rest_game(point):
         roll=roll2dice()
     if roll==point:
         print('you win!')
-        play_craps()
+        play_craps("Want to play again? (\"Y\" for yes, \"N\" for no)  ")
         return True
     else:
         print("you lose")
-        play_craps()
+        play_craps("Want to play again? (\"Y\" for yes, \"N\" for no)  ")
         return False
 
-def play_craps():
+def play_craps(message):
     ''' repeatedly asks the user if they want to play
         if so, it calls play1game()
         and continues until they don't want to play anymore
     '''
-    gameState = input("Want to play craps? (\"Y\" for yes, \"N\" for no)  ")
+    gameState = input(message)
     if(gameState=="y" or gameState =="Y"):
         play1game()
     elif(gameState=="n" or gameState =="N"):
@@ -59,7 +61,7 @@ def play_craps():
         exit()
     else:
         print("Only the characters \"Y\",\"y\",\"N\",and \"n\" are allowed")
-        play_craps()
+        play_craps(message)
 
 
-play_craps()
+play_craps("Want to play craps? (\"Y\" for yes, \"N\" for no)  ")
