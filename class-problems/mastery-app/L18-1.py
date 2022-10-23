@@ -39,9 +39,11 @@ def play_rest_game(point):
         roll=roll2dice()
     if roll==point:
         print('you win!')
+        play_craps()
         return True
     else:
         print("you lose")
+        play_craps()
         return False
 
 def play_craps():
@@ -49,5 +51,15 @@ def play_craps():
         if so, it calls play1game()
         and continues until they don't want to play anymore
     '''
+    gameState = input("Want to play craps? (\"Y\" for yes, \"N\" for no)  ")
+    if(gameState=="y" or gameState =="Y"):
+        play1game()
+    elif(gameState=="n" or gameState =="N"):
+        print("Goodbye!")
+        exit()
+    else:
+        print("Only the characters \"Y\",\"y\",\"N\",and \"n\" are allowed")
+        play_craps()
 
-play1game()
+
+play_craps()
