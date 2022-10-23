@@ -7,7 +7,7 @@ craps.py is an interactive program to play a simple version of the dice game cra
 
 '''
 from random import randint   # randint(a,b) returns random integer between a, b inclusive
-
+# hello
 def roll2dice():
     "roll 2 dice and return the sum of it"
     first_dice=randint(1,6)
