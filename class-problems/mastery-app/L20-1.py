@@ -7,11 +7,12 @@ pets = [
 {'name':'George', 'species':'dog',  'age': 2, 'weight':25, 'personality': 'cuddly'},
 {'name':'Leo',    'species':'dog',  'age': 1, 'weight':18,'personality':'happy'}
 ]
-def avg_wieghts(list):
+def avg_wieghts(list,weight):
+    '''Returns the average of a desired weight from a dictionary'''
     sum = 0
     for item in list:
-        sum = sum + item["weight"]
+        sum = sum + item[weight]
     average = sum/len(list)
     return average
-print(avg_wieghts(pets))
+print(avg_wieghts(pets,"weight"))
     
