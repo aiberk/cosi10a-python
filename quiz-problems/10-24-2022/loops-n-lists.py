@@ -14,6 +14,8 @@ list = [3,5,8,20,1,22,100]
 print(diffs(list))
 
 
+
+
 # def diffs(list):
 #     ''' Takes a list vals of n integers and returns a list of the successive differences.'''
 #     final_array = [list[i + 1] - list[i] for i in range(len(list)-1)]
@@ -28,3 +30,5 @@ print(diffs(list))
 #     return res
 # list = [3,5,8,20]
 # print(diffs(list))
+
+#######
