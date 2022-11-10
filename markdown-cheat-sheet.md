@@ -1,17 +1,3 @@
-# cosi10a-python
-
-## Class work from COSI-10A Problem Solving with Python
-
-### Includes:
-
-### 1. Class Work
-
-### 2. Programming Assignments
-
-### 3. Quiz Problems
-
----
-
 # Markdown Cheat Sheet
 
 Thanks for visiting [The Markdown Guide](https://www.markdownguide.org)!
