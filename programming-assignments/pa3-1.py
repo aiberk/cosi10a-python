@@ -8,6 +8,15 @@
 
 def binomial_practice():
     '''Program to quiz students on binomial multiplication.'''
-    print("Hello")
+    program_state = True
+    while (program_state == True):
+        print("Hello")
+        user_prompt_exit_game = input('Continue pratice?')
+        if(user_prompt_exit_game=='Y'):
+            continue
+        elif(user_prompt_exit_game=='N'):
+            program_state = False
+    print("Goodbye")
+    exit()
 
 binomial_practice()
