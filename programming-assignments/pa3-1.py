@@ -6,12 +6,15 @@
 # where u = ac  v=ad+bc and w = bd
 
 
+###TO DO###
+# Create binomial_problem_maker that returns a randomly generated problem
+
 def binomial_practice():
     '''Program to quiz students on binomial multiplication.'''
     program_state = True
     while (program_state == True):
         print("Hello")
-        user_prompt_exit_game = input('Continue pratice?')
+        user_prompt_exit_game = input('Continue practicing?')
         if(user_prompt_exit_game=='Y'):
             continue
         elif(user_prompt_exit_game=='N'):
