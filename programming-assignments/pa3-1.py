@@ -7,7 +7,7 @@
 
 
 def binomial_practice():
-    '''Program to quizz students on binomial multiplication.'''
+    '''Program to quiz students on binomial multiplication.'''
     print("Hello")
 
 binomial_practice()
