@@ -9,15 +9,35 @@
 ###TO DO###
 # Create binomial_problem_maker that returns a randomly generated problem
 
+import random
+
 def binomial_practice():
     '''Program to quiz students on binomial multiplication.'''
     program_state = True
+
+    def binomial_problem_factory():
+        print('BPF FIRED')
+        a = random.randint(-10, 10)
+        b = random.randint(-10, 10)
+        c = random.randint(-10, 10)
+        d = random.randint(-10, 10)
+        u = a*c 
+        v = a*d+b*c
+        w = b*d
+        equation_string=str(u) + 'x^2'+str(v)+'x'+str(w)
+        print('')
+        print('What is the solution to:')
+        print(equation_string)
+        print('')
+        
+        
+        
     while (program_state == True):
-        print("Hello")
         user_prompt_exit_game = input('Continue practicing?')
-        if(user_prompt_exit_game=='Y'):
+        if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
+            binomial_problem_factory()
             continue
-        elif(user_prompt_exit_game=='N'):
+        elif(user_prompt_exit_game=='N' or user_prompt_exit_game=='n'):
             program_state = False
     print("Goodbye")
     exit()
