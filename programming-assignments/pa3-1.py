@@ -4,3 +4,10 @@
 # Also, the problems should be randomly generated with a,b,c,d in the range [-10,10] and you can construct the answer
 #   u*x^2 + v*x +w
 # where u = ac  v=ad+bc and w = bd
+
+
+def binomial_practice():
+    '''Program to quizz students on binomial multiplication.'''
+    print("Hello")
+
+binomial_practice()
