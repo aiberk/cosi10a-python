@@ -5,23 +5,19 @@
 #   u*x^2 + v*x +w
 # where u = ac  v=ad+bc and w = bd
 
-
-###TO DO###
-# Create binomial_problem_maker that returns a randomly generated problem
-# Get global variables to update
-# add logic for operators in bpf func - Done
-
 import random
 
 def binomial_practice():
     '''Program to quiz students on binomial multiplication.'''
-    #Global state variables
+    #Global state variables, constants, and UI strings
     program_state = True
     user_answer =''
     correct_array = []
     wrong_array = []
-    total_problems = 0
-    separator_lines = '<-------------------------------->\n'
+    wrong_answers_array = []
+    correct_answers_for_wrong =[]
+    separator_lines = '------\n'
+    input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO)' 
 
     def binomial_problem_factory():
         '''Function that creates a binomial problem and returns the problem and its answer'''
@@ -65,38 +61,58 @@ def binomial_practice():
         return answer_string, equation_string
     
     def answer_Tracker(user,answer,equation):
-        '''Function checks if the user got the answer right and adds it to a correct or wrong array'''
+        '''Function checks if the user got the answer right and adds it to a correct or incorrect array'''
         if(user==answer):
             correct_array.append(equation)
             print('That is correct!')
         else:
             wrong_array.append(equation)
-            print('I am sorry, but that is incorrect. The answer is:',answer,'\n')
+            wrong_answers_array.append(user)
+            correct_answers_for_wrong.append(answer)
+            print('I am sorry, but',user,'is incorrect. The answer is:',answer,'\n')
 
     def final_score():
+        '''Function that prints the final score and the specific problems the users correct and incorrect problems'''
         global total_problems
         total_problems= len(correct_array) + len(wrong_array)
+        print('')
         print('You answered',total_problems)
         print('Correct:',len(correct_array))
         print('Wrong:',len(wrong_array))
-
+        view_problems =input('Before you leave, would you like to print the problems you got wrong?\n')
+        
+        if(view_problems=='Y' or view_problems == 'y'):
+            print('')
+            print('You got these problems incorrect:')
+            for x ,y, z in zip(wrong_array,wrong_answers_array,correct_answers_for_wrong):
+                print('Problem:',x)
+                print('Your Answer:',y)
+                print('Correct Answer:',z)
+                print('')
+        elif(view_problems=='N'or view_problems=='n'):
+            exit()
+            
         
         
     # While loop that keeps track of state if the User wants to continue playing    
     while (program_state == True):
-        print('Total Problems:',len(correct_array)+len(wrong_array),'Correct:',len(correct_array),'Wrong:',len(wrong_array))
-        user_prompt_exit_game = input('Continue practicing?\n')
+        print(separator_lines)
+       
+        user_prompt_exit_game = input('Want to practice binomial multiplication?\n')
+        print('Total Problems:',len(correct_array)+len(wrong_array),'Correct:',len(correct_array),'Wrong:',len(wrong_array),'\n')
         
         if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
             binomial_problem_factory()
-            print(separator_lines)
-            #for testing get rid
-            print("For testing",answer_string)
+            #Uncomment line below to cheat and get answer ;)
+            #print("For testing",answer_string)
             user_answer=input('What is the answer to:'+ str(equation_string)+"\n")
             answer_Tracker(user_answer,answer_string,equation_string)
-            #continue
+            
         elif(user_prompt_exit_game=='N' or user_prompt_exit_game=='n'):
             program_state = False
+        else:
+            print(input_warning_string)
+            user_prompt_exit_game = input('Want to practice binomial multiplication?\n')
     final_score()
     exit()
 
