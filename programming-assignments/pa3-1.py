@@ -7,7 +7,7 @@
 
 import random
 
-def binomial_practice():
+def binomial_practice_program():
     '''Program to quiz students on binomial multiplication.'''
     #Global state variables, constants, and UI strings
     program_state = True
@@ -32,7 +32,7 @@ def binomial_practice():
         v = a*d+b*c
         w = b*d
         
-        #Correct operators in string
+        #Correct operators for negative values in string
         b_operator='+'
         d_operator='+'
         v_operator='+'
@@ -73,12 +73,12 @@ def binomial_practice():
 
     def final_score():
         '''Function that prints the final score and the specific problems the users correct and incorrect problems'''
-        global total_problems
         total_problems= len(correct_array) + len(wrong_array)
         print('')
         print('You answered',total_problems)
         print('Correct:',len(correct_array))
         print('Wrong:',len(wrong_array))
+        print('')
         view_problems =input('Before you leave, would you like to print the problems you got wrong?\n')
         
         if(view_problems=='Y' or view_problems == 'y'):
@@ -103,8 +103,6 @@ def binomial_practice():
         
         if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
             binomial_problem_factory()
-            #Uncomment line below to cheat and get answer ;)
-            #print("For testing",answer_string)
             user_answer=input('What is the answer to:'+ str(equation_string)+"\n")
             answer_Tracker(user_answer,answer_string,equation_string)
             
@@ -114,6 +112,7 @@ def binomial_practice():
             print(input_warning_string)
             user_prompt_exit_game = input('Want to practice binomial multiplication?\n')
     final_score()
+    print('Goodbye!')
     exit()
 
-binomial_practice()
+binomial_practice_program()
