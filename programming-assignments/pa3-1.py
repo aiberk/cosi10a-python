@@ -8,6 +8,8 @@
 
 ###TO DO###
 # Create binomial_problem_maker that returns a randomly generated problem
+# Get global variables to update
+#add logic for operators in bpf func
 
 import random
 
@@ -18,19 +20,31 @@ def binomial_practice():
     answer_string=''
 
     def binomial_problem_factory():
+        #Assign values to each variable in the equation
         a = random.randint(-10, 10)
         b = random.randint(-10, 10)
         c = random.randint(-10, 10)
         d = random.randint(-10, 10)
+
+        #Create varables to compute answer
         u = a*c 
         v = a*d+b*c
         w = b*d
+        
+        #Correct operator in string
+        b_operator='+'
+        d_operator='+'
+        if(d<0):
+            d_operator=''
+        elif(b<0):
+            d_operator=''
+
         temp = str(u) + 'x^2'+str(v)+'x'+str(w)
         global equation_string
         equation_string = temp
 
         global answer_string
-        answer_string = '('+str(a)+'x+'+str(b)+')'+'*'+'('+str(c)+'x+'+str(d)+')'
+        answer_string = '('+str(a)+'x'+str(b_operator)+str(b)+')'+'*'+'('+str(c)+'x'+str(d_operator)+str(d)+')'
         print('')
         print('What is the solution to:')
         print(answer_string)
