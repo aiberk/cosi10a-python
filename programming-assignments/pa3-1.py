@@ -5,6 +5,8 @@
 #   u*x^2 + v*x +w
 # where u = ac  v=ad+bc and w = bd
 
+###Final things todo - make 'loop' . in finalscore() to keep final score print funcitoning correctly
+
 import random
 
 def binomial_practice_program():
