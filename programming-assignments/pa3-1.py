@@ -20,6 +20,8 @@ def binomial_practice():
     user_answer =''
     correct_array = []
     wrong_array = []
+    total_problems = 0
+    separator_lines = '<-------------------------------->\n'
 
     def binomial_problem_factory():
         '''Function that creates a binomial problem and returns the problem and its answer'''
@@ -66,30 +68,36 @@ def binomial_practice():
         '''Function checks if the user got the answer right and adds it to a correct or wrong array'''
         if(user==answer):
             correct_array.append(equation)
-            print('Correct')
+            print('That is correct!')
         else:
             wrong_array.append(equation)
-            print('Wrong')
-        print(correct_array)
-        print(wrong_array)
+            print('I am sorry, but that is incorrect. The answer is:',answer,'\n')
+
+    def final_score():
+        global total_problems
+        total_problems= len(correct_array) + len(wrong_array)
+        print('You answered',total_problems)
+        print('Correct:',len(correct_array))
+        print('Wrong:',len(wrong_array))
 
         
         
     # While loop that keeps track of state if the User wants to continue playing    
     while (program_state == True):
-        user_prompt_exit_game = input('Continue practicing?')
+        print('Total Problems:',len(correct_array)+len(wrong_array),'Correct:',len(correct_array),'Wrong:',len(wrong_array))
+        user_prompt_exit_game = input('Continue practicing?\n')
         
         if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
             binomial_problem_factory()
-
+            print(separator_lines)
             #for testing get rid
-            print(answer_string)
+            print("For testing",answer_string)
             user_answer=input('What is the answer to:'+ str(equation_string)+"\n")
             answer_Tracker(user_answer,answer_string,equation_string)
             #continue
         elif(user_prompt_exit_game=='N' or user_prompt_exit_game=='n'):
             program_state = False
-    print("Goodbye")
+    final_score()
     exit()
 
 binomial_practice()
