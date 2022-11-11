@@ -12,3 +12,12 @@
 
 # The program should let the user continue until they want to quit and then tell them
 # how many words they unscrambled of each length and how many they gave up on.
+
+a = 7
+def setA(value):
+    global a   # declare a to be a global
+    a = value  # this sets the global value of a
+    print('From Function',a)
+print('Global',a)
+setA(100)
+print('After function',a)

@@ -9,15 +9,17 @@
 ###TO DO###
 # Create binomial_problem_maker that returns a randomly generated problem
 # Get global variables to update
-#add logic for operators in bpf func
+# add logic for operators in bpf func - Done
 
 import random
 
 def binomial_practice():
     '''Program to quiz students on binomial multiplication.'''
+    #Global state variables
     program_state = True
-    equation_string ='nothing'
-    answer_string=''
+    user_answer =''
+    correct_array = []
+    wrong_array = []
 
     def binomial_problem_factory():
         '''Function that creates a binomial problem and returns the problem and its answer'''
@@ -27,12 +29,12 @@ def binomial_practice():
         c = random.randint(-10, 10)
         d = random.randint(-10, 10)
 
-        #Create varables to compute answer
+        #Create variables to compute answer
         u = a*c 
         v = a*d+b*c
         w = b*d
         
-        #Correct operator in string
+        #Correct operators in string
         b_operator='+'
         d_operator='+'
         v_operator='+'
@@ -52,27 +54,39 @@ def binomial_practice():
 
         #create problem and answer strings for display and comparison
         #update global variables to share with other functions
-        temp = str(u) + 'x^2'+str(v_operator)+str(v)+'x'+str(w_operator)+str(w)
-        global equation_string
-        equation_string = temp
 
         global answer_string
-        answer_string = '('+str(a)+'x'+str(b_operator)+str(b)+')'+'*'+'('+str(c)+'x'+str(d_operator)+str(d)+')'
-        print('')
-        print('What is the solution to:')
-        print(answer_string)
-        print('')
-        print(equation_string)
+        answer_string = str(u) + 'x^2'+str(v_operator)+str(v)+'x'+str(w_operator)+str(w)
+
+        global equation_string
+        equation_string = '('+str(a)+'x'+str(b_operator)+str(b)+')'+'*'+'('+str(c)+'x'+str(d_operator)+str(d)+')'
+        return answer_string, equation_string
+    
+    def answer_Tracker(user,answer,equation):
+        '''Function checks if the user got the answer right and adds it to a correct or wrong array'''
+        if(user==answer):
+            correct_array.append(equation)
+            print('Correct')
+        else:
+            wrong_array.append(equation)
+            print('Wrong')
+        print(correct_array)
+        print(wrong_array)
+
         
         
-        
+    # While loop that keeps track of state if the User wants to continue playing    
     while (program_state == True):
         user_prompt_exit_game = input('Continue practicing?')
         
         if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
-            print('Previous Equation',answer_string)
             binomial_problem_factory()
-            continue
+
+            #for testing get rid
+            print(answer_string)
+            user_answer=input('What is the answer to:'+ str(equation_string)+"\n")
+            answer_Tracker(user_answer,answer_string,equation_string)
+            #continue
         elif(user_prompt_exit_game=='N' or user_prompt_exit_game=='n'):
             program_state = False
     print("Goodbye")
