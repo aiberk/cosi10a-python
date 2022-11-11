@@ -63,7 +63,7 @@ def binomial_practice_program():
         return answer_string, equation_string
     
     def answer_Tracker(user,answer,equation):
-        '''Function checks if the user got the answer right and adds it to a correct or incorrect array'''
+        '''Function compare the user's answer string against the correct answer string. Finally it adds the problem to a correct or incorrect array'''
         if(user==answer):
             correct_array.append(equation)
             print('That is correct!')
