@@ -14,9 +14,10 @@ import random
 def binomial_practice():
     '''Program to quiz students on binomial multiplication.'''
     program_state = True
+    equation_string ='nothing'
+    answer_string=''
 
     def binomial_problem_factory():
-        print('BPF FIRED')
         a = random.randint(-10, 10)
         b = random.randint(-10, 10)
         c = random.randint(-10, 10)
@@ -24,17 +25,25 @@ def binomial_practice():
         u = a*c 
         v = a*d+b*c
         w = b*d
-        equation_string=str(u) + 'x^2'+str(v)+'x'+str(w)
+        temp = str(u) + 'x^2'+str(v)+'x'+str(w)
+        global equation_string
+        equation_string = temp
+
+        global answer_string
+        answer_string = '('+str(a)+'x+'+str(b)+')'+'*'+'('+str(c)+'x+'+str(d)+')'
         print('')
         print('What is the solution to:')
-        print(equation_string)
+        print(answer_string)
         print('')
+        print(equation_string)
         
         
         
     while (program_state == True):
         user_prompt_exit_game = input('Continue practicing?')
+        
         if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
+            print('Previous Equation',answer_string)
             binomial_problem_factory()
             continue
         elif(user_prompt_exit_game=='N' or user_prompt_exit_game=='n'):
