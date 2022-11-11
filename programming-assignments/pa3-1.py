@@ -20,7 +20,8 @@ def binomial_practice():
     answer_string=''
 
     def binomial_problem_factory():
-        #Assign values to each variable in the equation
+        '''Function that creates a binomial problem and returns the problem and its answer'''
+        #Assign random values to each variable in the equation
         a = random.randint(-10, 10)
         b = random.randint(-10, 10)
         c = random.randint(-10, 10)
@@ -34,12 +35,24 @@ def binomial_practice():
         #Correct operator in string
         b_operator='+'
         d_operator='+'
+        v_operator='+'
+        w_operator='+'
+
         if(d<0):
             d_operator=''
-        elif(b<0):
-            d_operator=''
+        
+        if(b<0):
+            b_operator=''
 
-        temp = str(u) + 'x^2'+str(v)+'x'+str(w)
+        if(v<0):
+            v_operator=''
+
+        if(w<0):
+            w_operator=''
+
+        #create problem and answer strings for display and comparison
+        #update global variables to share with other functions
+        temp = str(u) + 'x^2'+str(v_operator)+str(v)+'x'+str(w_operator)+str(w)
         global equation_string
         equation_string = temp
 
