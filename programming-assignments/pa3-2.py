@@ -16,7 +16,7 @@
 # how many words they unscrambled of each length and how many they gave up on.
 
 ####TODO######
-##add ability to choose length of new word, pass it to prompt_generator() as an arguement. 
+##add ability to choose length of new word, pass it to prompt_generator() as an argument. 
 ###Fix try again loop
 
 
@@ -27,7 +27,7 @@ import random
 
 
 def playScramble():
-    '''Game that randmoly picks a word from a list of 100000 and then scrambles it, finally it asks a user to guess the original word. '''
+    '''Game that randomly picks a word from a list of 100000 and then scrambles it, finally it asks a user to guess the original word. '''
 
     #Global state variables, constants, and UI strings
     program_state =True
@@ -56,8 +56,10 @@ def playScramble():
         return final_string,chosen_word
     
     def prompt_and_score_control(param):
-        '''Receives a tuple from prompt_generator() containing a string and a shuffled version of that string's characters. It then asks the user to guess the original string by printing out the shuffled version
-        as a hint. After getting input back from the user it checks if the user_guess and original string match, if they don't the user is given as many chances as they like to guess. Once the guess is satisfactory 
+        '''Receives a tuple from prompt_generator() containing a string and a shuffled version of that string's characters. 
+        It then asks the user to guess the original string by printing out the shuffled version
+        as a hint. After getting input back from the user it checks if the user_guess and original string match, 
+        if they don't the user is given as many chances as they like to guess. Once the guess is satisfactory 
         or the user chooses to give up, the function gives back control to the main while loop'''
         user_success=False
         prompt = param[0]
@@ -85,6 +87,8 @@ def playScramble():
         
 
     def print_final_score(correct, wrong, attempts):
+        '''Prints current and final score between rounds and at end of the game. 
+        Recevies three arguements, the correct_answers array, wrong_answers array, and attempts_array'''
         total = len(correct) + len(wrong)
         print('')
         print('You played a total of:',total,'words')
