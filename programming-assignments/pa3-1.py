@@ -97,7 +97,7 @@ def binomial_practice_program():
         
         
     # While loop that keeps track of state if the User wants to continue playing    
-    while (program_state == True):
+    while (program_state):
         print(separator_lines)
        
         user_prompt_exit_game = input('Want to practice binomial multiplication?\n')

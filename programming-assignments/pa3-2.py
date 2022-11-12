@@ -24,6 +24,7 @@ import random
 
 def playScramble():
     '''Game that randmoly picks a word from a list of 100000 and then scambles it, finally it asks a user to guess the original word. '''
+    program_state =True
     wordfile = open('wordlist.txt','r')
     wordstring = wordfile.read()
     words = wordstring.split()
@@ -37,13 +38,14 @@ def playScramble():
         final_string = ''
         for x in shuffled:
             final_string = final_string + x
-        print('Shuffled',final_string)
-        print('Answer',chosen_word)
-
-        # scrambled_word = random.shuffle(chosen_word_array)
         return final_string,chosen_word
+        
 
-    print(prompt_generator())
 
+    game_array = prompt_generator()
+    answer= game_array[1]
+    prompt = game_array[0]
+
+    print(prompt)
 
 playScramble()
