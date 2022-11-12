@@ -23,8 +23,9 @@ import random
 
 
 def playScramble():
-    '''Game that randmoly picks a word from a list of 100000 and then scambles it, finally it asks a user to guess the original word. '''
+    '''Game that randmoly picks a word from a list of 100000 and then scrambles it, finally it asks a user to guess the original word. '''
     program_state =True
+    input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO)' 
     wordfile = open('wordlist.txt','r')
     wordstring = wordfile.read()
     words = wordstring.split()
@@ -39,13 +40,24 @@ def playScramble():
         for x in shuffled:
             final_string = final_string + x
         return final_string,chosen_word
+    
+    def prompt_and_score_control(param):
+        print(param[0],param[1])
         
+    while(program_state):
+        user_prompt_game_state = input('Want to play WORD-SCRAMBLE?\n')
+        if(user_prompt_game_state=='Y'or user_prompt_game_state=='y'):
+            prompt_and_score_control(prompt_generator())
+        elif(user_prompt_game_state=='N' or user_prompt_game_state=='n'):
+            program_state = False
+        else:
+            print(input_warning_string)
+            user_prompt_game_state = input('Want to play WORD-SCRAMBLE?\n')
+    print('Goodbye!')
+    exit()
 
 
-    game_array = prompt_generator()
-    answer= game_array[1]
-    prompt = game_array[0]
 
-    print(prompt)
+    
 
 playScramble()
