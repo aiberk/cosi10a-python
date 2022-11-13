@@ -25,6 +25,7 @@
 Unscramble Game
 '''
 import random
+import re
 
 
 def play_word_scramble():
@@ -37,6 +38,7 @@ def play_word_scramble():
     attempts_array = []
     wrong_answers_array = []
     correct_answers_for_wrong =[]
+    regex = '^[a-zA-Z]*$'
     input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO)' 
     separator_lines = '------\n'
 
@@ -60,7 +62,7 @@ def play_word_scramble():
     
     def filter_list(word):
         '''Filter method for filter() function. Gets array of words and returns a new array containing words with the user defined length'''
-        if(len(word)==user_word_length_choice):
+        if(len(word)==int(user_word_length_choice)):
             return True
         else:
             return False
@@ -110,6 +112,28 @@ def play_word_scramble():
         print('You got',len(correct),'correct, you got',len(wrong),'incorrect')
         print('and attempted a total of:',len(attempts),'times')
         print('')
+    
+    def input_cleanser():
+        '''Gets input from user and makes sure it is the right type, if the input is NOT the right type it will prompt user again'''
+        input_clean = False
+        #ask user input
+        #check against letters
+        #check length
+        #return good output
+        global user_word_length_choice
+        while(input_clean==False):
+            user_word_length_choice = input('Maximum word length?(25MAX)\n')
+            input_checker = re.search(regex,user_word_length_choice)
+            if(input_checker):
+                print('')
+                print('Letters are not permitted, please add a number between 1-25')
+            elif(int(user_word_length_choice)>25):
+                print('')
+                print('25 is the maximum word length')
+                print('')
+            else:
+                return user_word_length_choice
+
 
         
     while(program_state):
@@ -120,12 +144,7 @@ def play_word_scramble():
             user_prompt_game_state = input('Want to play WORD-SCRAMBLE again?\n')
         print('')
         if(user_prompt_game_state=='Y'or user_prompt_game_state=='y'):
-            global user_word_length_choice
-            user_word_length_choice = int(input('Maximum word length?(25MAX)\n'))
-            if(user_word_length_choice>25):
-                print('')
-                print('25 is the maximum word length')
-                user_word_length_choice = int(input('What word length would you like to use?(25MAX)\n'))
+            input_cleanser()
             print('')
             round_and_score_control(prompt_generator())
         elif(user_prompt_game_state=='N' or user_prompt_game_state=='n'):
