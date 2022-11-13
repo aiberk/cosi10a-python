@@ -17,6 +17,7 @@
 
 ####TODO######
 ###Fix try again loop with try_again() function (make it from scratch)
+#### Erase DEBUG prints
 
 
 '''
@@ -44,8 +45,6 @@ def play_word_scramble():
     wordstring = wordfile.read()
     words = wordstring.split()
 
-
-    
 
     def prompt_generator():
         '''Chooses a word arbritrarly, with a length chosen by the user, then scrambles it'''
@@ -81,8 +80,9 @@ def play_word_scramble():
         prompt = filtered_word_list[0]
         answer = filtered_word_list[1]
         while(user_success==False):
+            ##DEBUG PRINT##
             print(prompt, answer)
-            user_guess=input(f'What is the original sequence for {prompt}?\n')
+            user_guess=input(f'What is the original sequence/word for {prompt}?\n')
             if(user_guess==answer):
                 attempts_array.append(1)
                 correct_array.append(answer)
