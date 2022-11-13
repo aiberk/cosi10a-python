@@ -18,6 +18,7 @@
 ####TODO######
 ##add ability to choose length of new word, pass it to prompt_generator() as an argument. 
 ###Fix try again loop
+###3INPUT cleansing for length and try again loop
 
 
 '''
@@ -46,7 +47,6 @@ def playScramble():
 
     def prompt_generator():
         '''Chooses a word arbritrarly, with a length chosen by the user, then scrambles it'''
-        ####separate words by length
         filtered_words = list(filter(filter_list, words))
         randomized_index = random.randint(0, len(filtered_words))
         chosen_word= filtered_words[randomized_index]
@@ -59,6 +59,7 @@ def playScramble():
     
     
     def filter_list(word):
+        '''Filter method for filter() function. Gets array of words and returns a new array containing words with the user defined length'''
         if(len(word)==user_word_length_choice):
             return True
         else:
@@ -88,6 +89,7 @@ def playScramble():
                 #@@add while loop here
                 if(try_again=='N' or try_again=='n'):
                     wrong_array.append(1)
+                    print('The answer was:',answer)
                     print_final_score(correct_array,wrong_array,attempts_array)
                     user_success =True
                 elif(try_again=='Y' or try_again=='y'):
@@ -97,7 +99,7 @@ def playScramble():
         
 
     def print_final_score(correct, wrong, attempts):
-        '''Prints current and final score between rounds and at end of the game. 
+        '''Prints score between rounds and at end of the game. 
         Receives three arguments, the correct_answers array, wrong_answers array, and attempts_array'''
         total = len(correct) + len(wrong)
         print('')
@@ -109,7 +111,10 @@ def playScramble():
         
     while(program_state):
         print('')
-        user_prompt_game_state = input('Want to play WORD-SCRAMBLE?\n')
+        if(len(attempts_array)==0):
+            user_prompt_game_state = input('Want to play WORD-SCRAMBLE?\n')
+        else:
+            user_prompt_game_state = input('Want to play WORD-SCRAMBLE again?\n')
         print('')
         if(user_prompt_game_state=='Y'or user_prompt_game_state=='y'):
             global user_word_length_choice
@@ -123,6 +128,7 @@ def playScramble():
             program_state = False
         else:
             print(input_warning_string)
+            program_state = True
 
     print('Goodbye!')
     exit()
