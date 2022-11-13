@@ -46,14 +46,24 @@ def playScramble():
 
     def prompt_generator():
         '''Chooses a word arbritrarly, with a length chosen by the user, then scrambles it'''
-        randomized_index = random.randint(0, len(words))
-        chosen_word= words[randomized_index]
+        ####separate words by length
+        filtered_words = list(filter(filter_list, words))
+        randomized_index = random.randint(0, len(filtered_words))
+        chosen_word= filtered_words[randomized_index]
         scrambled_word = [*chosen_word]
         shuffled = random.sample(scrambled_word, len(scrambled_word))
         final_string = ''
         for x in shuffled:
             final_string = final_string + x
         return final_string,chosen_word
+    
+    
+    def filter_list(word):
+        if(len(word)<=user_word_length_choice):
+            return True
+        else:
+            return False
+
     
     def prompt_and_score_control(param):
         '''Receives a tuple from prompt_generator() containing a string and a shuffled version of that string's characters. 
@@ -75,7 +85,7 @@ def playScramble():
             else:
                 attempts_array.append(1)
                 try_again = input('Want to try again?\n')
-                #add while loop here
+                #@@add while loop here
                 if(try_again=='N' or try_again=='n'):
                     wrong_array.append(1)
                     print_final_score(correct_array,wrong_array,attempts_array)
@@ -88,7 +98,7 @@ def playScramble():
 
     def print_final_score(correct, wrong, attempts):
         '''Prints current and final score between rounds and at end of the game. 
-        Recevies three arguements, the correct_answers array, wrong_answers array, and attempts_array'''
+        Receives three arguments, the correct_answers array, wrong_answers array, and attempts_array'''
         total = len(correct) + len(wrong)
         print('')
         print('You played a total of:',total,'words')
@@ -102,6 +112,8 @@ def playScramble():
         user_prompt_game_state = input('Want to play WORD-SCRAMBLE?\n')
         print('')
         if(user_prompt_game_state=='Y'or user_prompt_game_state=='y'):
+            global user_word_length_choice
+            user_word_length_choice = int(input('Maximum word length?(15MAX)\n'))
             print('')
             prompt_and_score_control(prompt_generator())
         elif(user_prompt_game_state=='N' or user_prompt_game_state=='n'):
