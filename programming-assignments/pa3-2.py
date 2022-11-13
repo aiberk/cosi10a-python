@@ -16,9 +16,7 @@
 # how many words they unscrambled of each length and how many they gave up on.
 
 ####TODO######
-##add ability to choose length of new word, pass it to prompt_generator() as an argument. 
-###Fix try again loop
-###3INPUT cleansing for letter in lenght (use regex) and try again loop
+###Fix try again loop with try_again() function (make it from scratch)
 
 
 '''
@@ -47,6 +45,9 @@ def play_word_scramble():
     wordstring = wordfile.read()
     words = wordstring.split()
 
+
+    
+
     def prompt_generator():
         '''Chooses a word arbritrarly, with a length chosen by the user, then scrambles it'''
         filtered_words = list(filter(filter_list, words))
@@ -67,6 +68,9 @@ def play_word_scramble():
         else:
             return False
 
+    def s():
+        '''Function that prints extra spaces for UI'''
+        print('')
     
     def round_and_score_control(filtered_word_list):
         '''Receives a tuple from prompt_generator() containing a string and a shuffled version of that string's characters. 
@@ -83,72 +87,68 @@ def play_word_scramble():
             if(user_guess==answer):
                 attempts_array.append(1)
                 correct_array.append(answer)
-                print('')
+                s()
                 print('Nice!',answer,'is correct!!')
                 user_success = True
             else:
                 attempts_array.append(1)
-                print('')
+                s()
                 try_again = input('Want to try again?\n')
                 #@@add while loop here
                 if(try_again=='N' or try_again=='n'):
                     wrong_array.append(1)
-                    print('')
+                    s()
                     print('The answer was:',answer)
                     print_final_score(correct_array,wrong_array,attempts_array)
                     user_success =True
                 elif(try_again=='Y' or try_again=='y'):
                     user_success==False
                 else:
+                    s()
                     print(input_warning_string)
+                    user_success==False
         
 
     def print_final_score(correct, wrong, attempts):
         '''Prints score between rounds and at end of the game. 
         Receives three arguments, the correct_answers array, wrong_answers array, and attempts_array'''
         total = len(correct) + len(wrong)
-        print('')
+        s()
         print('You played a total of:',total,'words')
         print('You got',len(correct),'correct, you got',len(wrong),'incorrect')
         print('and attempted a total of:',len(attempts),'times')
-        print('')
+        s()
+    
     
     def input_cleanser():
-        '''Gets input from user and makes sure it is the right type, if the input is NOT the right type it will prompt user again'''
+        '''(TLDR avoid Type errors) Gets input from user and makes sure it is the right type (), if the input is NOT the right type it will prompt user again'''
         input_clean = False
-        #ask user input
-        #check against letters
-        #check length
-        #return good output
         global user_word_length_choice
         while(input_clean==False):
             user_word_length_choice = input('Maximum word length?(25MAX)\n')
             input_checker = re.search(regex,user_word_length_choice)
             if(input_checker):
-                print('')
+                s()
                 print('Letters are not permitted, please add a number between 1-25')
             elif(int(user_word_length_choice)>25):
-                print('')
+                s()
                 print('25 is the maximum word length')
-                print('')
             else:
                 return user_word_length_choice
-
-
         
     while(program_state):
-        print('')
+        s()
         if(len(attempts_array)==0):
             user_prompt_game_state = input('Want to play WORD-SCRAMBLE?\n')
         else:
             user_prompt_game_state = input('Want to play WORD-SCRAMBLE again?\n')
-        print('')
-        if(user_prompt_game_state=='Y'or user_prompt_game_state=='y'):
+        s()
+        if(user_prompt_game_state=='Y'or user_prompt_game_state=='y' or user_prompt_game_state=='YES' or user_prompt_game_state=='yes'):
             input_cleanser()
-            print('')
+            s()
             round_and_score_control(prompt_generator())
-        elif(user_prompt_game_state=='N' or user_prompt_game_state=='n'):
-            print('')
+        elif(user_prompt_game_state=='N' or user_prompt_game_state=='n' or user_prompt_game_state=='NO' or user_prompt_game_state=='no'):
+            s()
             print(f'Thank you for playing WORD-SCRAMBLE!')
             print_final_score(correct_array,wrong_array,attempts_array)
             program_state = False
