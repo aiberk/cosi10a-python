@@ -81,19 +81,19 @@ def play_word_scramble():
         answer = filtered_word_list[1]
         while(user_success==False):
             ##DEBUG PRINT##
-            print(prompt, answer)
+            # print(prompt, answer)
             user_guess=input(f'What is the original sequence/word for {prompt}?\n')
             if(user_guess==answer):
                 attempts_array.append(1)
                 correct_array.append(answer)
                 s()
                 print('Nice!',answer,'is correct!!')
+                print_final_score(correct_array,wrong_array,attempts_array)
                 user_success = True
             else:
                 attempts_array.append(1)
                 s()
                 try_again = input('Want to try again?\n')
-                #@@add while loop here
                 if(try_again=='N' or try_again=='n'):
                     wrong_array.append(1)
                     s()
@@ -106,7 +106,6 @@ def play_word_scramble():
                     s()
                     print(input_warning_string)
                     user_success==False
-        
 
     def print_final_score(correct, wrong, attempts):
         '''Prints score between rounds and at end of the game. 
@@ -122,17 +121,17 @@ def play_word_scramble():
     def input_cleanser():
         '''(TLDR avoid Type errors) Gets input from user and makes sure it is the right type (), if the input is NOT the right type it will prompt user again'''
         input_clean = False
-        message = 'please add a number between 1-25'
+        message = 'please add a number between 1-24'
         global user_word_length_choice
         while(input_clean==False):
-            user_word_length_choice = input('What word length?(25MAX)\n')
+            user_word_length_choice = input('What word length?(24 MAX)\n')
             input_checker = re.search(regex,user_word_length_choice)
             if(input_checker):
                 s()
                 print('Letters are not permitted,',message)
-            elif(int(user_word_length_choice)>25):
+            elif(int(user_word_length_choice)>=25):
                 s()
-                print('25 is the maximum word length,',message)
+                print('24 is the maximum word length,',message)
             else:
                 return user_word_length_choice
         
