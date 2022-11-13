@@ -122,16 +122,17 @@ def play_word_scramble():
     def input_cleanser():
         '''(TLDR avoid Type errors) Gets input from user and makes sure it is the right type (), if the input is NOT the right type it will prompt user again'''
         input_clean = False
+        message = 'please add a number between 1-25'
         global user_word_length_choice
         while(input_clean==False):
-            user_word_length_choice = input('Maximum word length?(25MAX)\n')
+            user_word_length_choice = input('What word length?(25MAX)\n')
             input_checker = re.search(regex,user_word_length_choice)
             if(input_checker):
                 s()
-                print('Letters are not permitted, please add a number between 1-25')
+                print('Letters are not permitted,',message)
             elif(int(user_word_length_choice)>25):
                 s()
-                print('25 is the maximum word length')
+                print('25 is the maximum word length,',message)
             else:
                 return user_word_length_choice
         
