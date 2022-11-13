@@ -59,7 +59,7 @@ def playScramble():
     
     
     def filter_list(word):
-        if(len(word)<=user_word_length_choice):
+        if(len(word)==user_word_length_choice):
             return True
         else:
             return False
