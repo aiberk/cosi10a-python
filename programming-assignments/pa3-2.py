@@ -37,8 +37,7 @@ def play_word_scramble():
     wrong_answers_array = []
     correct_answers_for_wrong =[]
     regex = '^[a-zA-Z]*$'
-    input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO)' 
-    separator_lines = '------\n'
+    input_warning_string = '(Please enter \'Y\', \'y\',\'YES\',or \'yes\' for YES, & \'N\',\'n\',\'NO\', or \'no\' for NO)' 
 
      #Load word dictionary ONE time when initialized to avoid reopening and closing
     wordfile = open('wordlist.txt','r')
@@ -69,7 +68,7 @@ def play_word_scramble():
             return False
 
     def s():
-        '''Function that prints extra spaces for UI'''
+        '''Function that prints extra spaces for UI, also s() is less typing than print(\'\')'''
         print('')
     
     def round_and_score_control(filtered_word_list):
