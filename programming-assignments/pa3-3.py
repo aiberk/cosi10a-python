@@ -52,30 +52,3 @@
 # You win! Computer loses.
 # --------------------------------------------
 # # Note that the user move is a string consisting of a letter a,b,or c  followed by some white space, and a number
-
-
-import re
-
-# str = 'We four guys, live at 2nd street of Malibeu 521. I had a cash of $248 in my pocket. I got a ticket with serial number 88796451-52.'
-
-# #search using regex
-# x=str.split()
-# print('All Numbers\n',str)
-
-# #digits of length N
-# N=3
-
-# def filterNumber(n):
-# 	if(len(n)==N):
-# 		return True
-# 	else:
-# 		return False
-		
-# #filter the list
-# finalx = list(filter(filterNumber, x))
-# print('Final List\n',finalx)
-
-regex = '^[a-zA-Z]*$'
-user_word_length_choice = int(input('Maximum word length?(25MAX)\n'))
-input_checker = re.search(regex,str(user_word_length_choice))
-print(input_checker)
