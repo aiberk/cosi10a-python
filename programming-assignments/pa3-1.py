@@ -9,6 +9,11 @@
 
 import random
 
+
+'''
+Binomial Multiplication Practice
+'''
+
 def binomial_practice_program():
     '''Program to quiz students on binomial multiplication.'''
     #Global state variables, constants, and UI strings
