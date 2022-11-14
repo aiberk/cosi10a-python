@@ -19,6 +19,7 @@
 ###Fix try again loop with try_again() function (make it from scratch)
 #### Erase DEBUG prints
 #### Add better LUI for users (Input Options)
+###Add symbols to REGEX
 
 
 '''
