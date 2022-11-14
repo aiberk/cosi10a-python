@@ -6,6 +6,7 @@
 # where u = ac  v=ad+bc and w = bd
 
 ###Final things todo - make 'loop' . in finalscore() to keep final score print funcitoning correctly
+#### Add better LUI for users (Input Options)
 
 import random
 
