@@ -39,7 +39,7 @@
 
 # computer move: a 8
 # removing 8 from a gives
-# NIM State {a:2, b:0, c:5}
+# NIM State {a:2, b:0, c:0}
 
 # your move:  a 1
 # removing 1 from a gives
