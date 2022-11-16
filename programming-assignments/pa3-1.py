@@ -106,7 +106,7 @@ def binomial_practice_program():
     while (program_state):
         print(separator_lines)
        
-        user_prompt_exit_game = input('Want to practice binomial multiplication?\n')
+        user_prompt_exit_game = input(f'Want to practice binomial multiplication? {input_warning_string}\n')
         print('Total Problems:',len(correct_array)+len(wrong_array),'Correct:',len(correct_array),'Wrong:',len(wrong_array),'\n')
         
         if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
