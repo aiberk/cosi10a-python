@@ -30,17 +30,16 @@ import re
 
 
 def play_word_scramble():
-    '''Game that randomly picks a word from a list of 100000 and then scrambles it, finally it asks a user to guess the original word. '''
+    '''Game that randomly picks a word from a list and then scrambles it, finally it asks a user to guess the original word. '''
 
     #Global state variables, constants, and UI strings
     program_state =True
     correct_array = []
     wrong_array = []
     attempts_array = []
-    wrong_answers_array = []
-    correct_answers_for_wrong =[]
     regex = '^[a-zA-Z]*$'
-    input_warning_string = '(Please enter \'Y\', \'y\',\'YES\',or \'yes\' for YES, & \'N\',\'n\',\'NO\', or \'no\' for NO)' 
+    input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO or type \'exit\' to quit)' 
+    exit_string = '(type \'exit\' to quit game)'
 
      #Load word dictionary ONE time when initialized to avoid reopening and closing
     wordfile = open('wordlist.txt','r')
@@ -68,8 +67,8 @@ def play_word_scramble():
         else:
             return False
 
-    def s():
-        '''Function that prints extra spaces for UI, also s() is less typing than print(\'\')'''
+    def space():
+        '''Function that prints extra spaces for LUI'''
         print('')
     
     def round_and_score_control(filtered_word_list):
@@ -84,40 +83,39 @@ def play_word_scramble():
         while(user_success==False):
             ##DEBUG PRINT##
             # print(prompt, answer)
-            user_guess=input(f'What is the original sequence/word for {prompt}?\n')
+            user_guess=input(f'What is the original sequence/word for {prompt}? {exit_string} \n ')
             if(user_guess==answer):
                 attempts_array.append(1)
                 correct_array.append(answer)
-                s()
-                print('Nice!',answer,'is correct!!')
+                print('\n Nice!',answer,'is correct!!')
                 print_final_score(correct_array,wrong_array,attempts_array)
                 user_success = True
+            elif(user_guess =='exit'):
+                exit()
             else:
-                attempts_array.append(1)
-                s()
-                try_again = input('Want to try again?\n')
+                attempts_array.append(prompt)
+                try_again = input(f'\n Want to try again? {exit_string}\n')
                 if(try_again=='N' or try_again=='n'):
-                    wrong_array.append(1)
-                    s()
-                    print('The answer was:',answer)
+                    wrong_array.append([prompt,answer])
+                    print('\n The answer was:',answer)
                     print_final_score(correct_array,wrong_array,attempts_array)
                     user_success =True
                 elif(try_again=='Y' or try_again=='y'):
                     user_success==False
+                elif(try_again =='exit'):
+                    exit()
                 else:
-                    s()
-                    print(input_warning_string)
+                    print('\n',input_warning_string)
                     user_success==False
 
     def print_final_score(correct, wrong, attempts):
         '''Prints score between rounds and at end of the game. 
         Receives three arguments, the correct_answers array, wrong_answers array, and attempts_array'''
         total = len(correct) + len(wrong)
-        s()
-        print('You played a total of:',total,'words')
+        print('\n You played a total of:',total,'words')
         print('You got',len(correct),'correct, you got',len(wrong),'incorrect')
-        print('and attempted a total of:',len(attempts),'times')
-        s()
+        print('and attempted a total of:',len(attempts),'times \n')
+     
     
     
     def input_cleanser():
@@ -129,30 +127,30 @@ def play_word_scramble():
             user_word_length_choice = input('What word length?(24 MAX)\n')
             input_checker = re.search(regex,user_word_length_choice)
             if(input_checker):
-                s()
-                print('Letters are not permitted,',message)
+                print('\n Letters are not permitted,',message, '\n')
             elif(int(user_word_length_choice)>=25):
-                s()
-                print('24 is the maximum word length,',message)
+                print('\n 24 is the maximum word length,',message,'\n')
             else:
                 return user_word_length_choice
         
     while(program_state):
-        s()
+       
         if(len(attempts_array)==0):
-            user_prompt_game_state = input('Want to play WORD-SCRAMBLE?\n')
+            user_prompt_game_state = input(f'\n Want to play WORD-SCRAMBLE? {exit_string}\n')
         else:
-            user_prompt_game_state = input('Want to play WORD-SCRAMBLE again?\n')
-        s()
+            user_prompt_game_state = input(f'Want to play WORD-SCRAMBLE again? {exit_string} \n')
+        space()
         if(user_prompt_game_state=='Y'or user_prompt_game_state=='y' or user_prompt_game_state=='YES' or user_prompt_game_state=='yes'):
             input_cleanser()
-            s()
+            space()
             round_and_score_control(prompt_generator())
         elif(user_prompt_game_state=='N' or user_prompt_game_state=='n' or user_prompt_game_state=='NO' or user_prompt_game_state=='no'):
-            s()
+            space()
             print(f'Thank you for playing WORD-SCRAMBLE!')
             print_final_score(correct_array,wrong_array,attempts_array)
             program_state = False
+        elif(user_prompt_game_state =='exit'):
+            exit()
         else:
             print(input_warning_string)
             program_state = True
