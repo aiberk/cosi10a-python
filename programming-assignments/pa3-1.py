@@ -26,6 +26,7 @@ def binomial_practice_program():
     correct_answers_for_wrong =[]
     separator_lines = '------\n'
     input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO)' 
+    input_sample_string = '(example: x^2+x+1)' 
 
     def binomial_problem_factory():
         '''Function that creates a binomial problem and returns the problem and its answer'''
@@ -87,7 +88,7 @@ def binomial_practice_program():
         print('Correct:',len(correct_array))
         print('Wrong:',len(wrong_array))
         print('')
-        view_problems =input('Before you leave, would you like to print the problems you got wrong?\n')
+        view_problems =input(f'Before you leave, would you like to print the problems you got wrong? {input_warning_string}\n')
         
         if(view_problems=='Y' or view_problems == 'y'):
             print('')
@@ -111,14 +112,15 @@ def binomial_practice_program():
         
         if(user_prompt_exit_game=='Y' or user_prompt_exit_game=='y'):
             binomial_problem_factory()
-            user_answer=input('What is the answer to:'+ str(equation_string)+"\n")
+            user_answer=input(f'What is the answer to:{str(equation_string)} {input_sample_string}\n')
+            print(input_sample_string)
             answer_Tracker(user_answer,answer_string,equation_string)
             
         elif(user_prompt_exit_game=='N' or user_prompt_exit_game=='n'):
             program_state = False
         else:
             print(input_warning_string)
-            user_prompt_exit_game = input('Want to practice binomial multiplication?\n')
+            user_prompt_exit_game = input(f'Want to practice binomial multiplication? {input_warning_string}\n')
     final_score()
     print('Goodbye!')
     exit()
