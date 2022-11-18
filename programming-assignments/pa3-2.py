@@ -83,21 +83,21 @@ def play_word_scramble():
         while(user_success==False):
             ##DEBUG PRINT##
             # print(prompt, answer)
-            user_guess=input(f'What is the original sequence/word for {prompt}? {exit_string} \n ')
+            user_guess=input(f'What is the original sequence/word for {prompt}? {exit_string}\n')
             if(user_guess==answer):
                 attempts_array.append(1)
                 correct_array.append(answer)
-                print('\n Nice!',answer,'is correct!!')
+                print('\nNice!',answer,'is correct!!')
                 print_final_score(correct_array,wrong_array,attempts_array)
                 user_success = True
             elif(user_guess =='exit'):
                 exit()
             else:
                 attempts_array.append(prompt)
-                try_again = input(f'\n Want to try again? {exit_string}\n')
+                wrong_array.append([prompt,answer])
+                try_again = input(f'\n{user_guess} is incorrect :( Want to try again? {input_warning_string}\n')
                 if(try_again=='N' or try_again=='n'):
-                    wrong_array.append([prompt,answer])
-                    print('\n The answer was:',answer)
+                    print('\nThe answer was:',answer)
                     print_final_score(correct_array,wrong_array,attempts_array)
                     user_success =True
                 elif(try_again=='Y' or try_again=='y'):
@@ -108,15 +108,28 @@ def play_word_scramble():
                     print('\n',input_warning_string)
                     user_success==False
     
-    def try_again():
+    def try_again(answer,prompt):
         '''Allows user to try the same question. should return user_success===False and somehow restart while loop use 'continue' '''
-        print('I tried')
+        print(f'{prompt} is incorrect :(')
+        try_again = input(f'\n Want to try again? {exit_string}\n')
+        if(try_again=='N' or try_again=='n'):
+            wrong_array.append([prompt,answer])
+            print('\nThe answer was:',answer)
+            print_final_score(correct_array,wrong_array,attempts_array)
+            user_success =True
+        elif(try_again=='Y' or try_again=='y'):
+            user_success==False
+        elif(try_again =='exit'):
+            exit()
+        else:
+            print('\n',input_warning_string)
+            user_success==False
 
     def print_final_score(correct, wrong, attempts):
         '''Prints score between rounds and at end of the game. 
         Receives three arguments, the correct_answers array, wrong_answers array, and attempts_array'''
         total = len(correct) + len(wrong)
-        print('\n You played a total of:',total,'words')
+        print('\nYou played a total of:',total,'words')
         print('You got',len(correct),'correct, you got',len(wrong),'incorrect')
         print('and attempted a total of:',len(attempts),'times \n')
      
@@ -125,22 +138,22 @@ def play_word_scramble():
     def input_cleanser():
         '''(TLDR avoid Type errors) Gets input from user and makes sure it is the right type (), if the input is NOT the right type it will prompt user again'''
         input_clean = False
-        message = 'please add a number between 1-24'
+        message = 'please add a number between 1-20'
         global user_word_length_choice
         while(input_clean==False):
-            user_word_length_choice = input('What word length?(24 MAX)\n')
+            user_word_length_choice = input('What word length?(20 MAX)\n')
             input_checker = re.search(regex,user_word_length_choice)
             if(input_checker):
-                print('\n Letters are not permitted,',message, '\n')
-            elif(int(user_word_length_choice)>=25):
-                print('\n 24 is the maximum word length,',message,'\n')
+                print('\nLetters are not permitted,',message, '\n')
+            elif(int(user_word_length_choice)>=20):
+                print('\n20 is the maximum word length,',message,'\n')
             else:
                 return user_word_length_choice
         
     while(program_state):
        
         if(len(attempts_array)==0):
-            user_prompt_game_state = input(f'\n Want to play WORD-SCRAMBLE? {exit_string}\n')
+            user_prompt_game_state = input(f'\nWant to play WORD-SCRAMBLE? {exit_string}\n')
         else:
             user_prompt_game_state = input(f'Want to play WORD-SCRAMBLE again? {exit_string} \n')
         space()
