@@ -15,16 +15,15 @@
 # The program should let the user continue until they want to quit and then tell them
 # how many words they unscrambled of each length and how many they gave up on.
 
-####TO DO######
-###Add symbols to REGEX
-###Fix total counter
-
 
 '''
 Unscramble Game
 '''
 import random
 import re
+
+## Best used with wordlist.txt found in the link below
+## https://drive.google.com/file/d/1eB45TBav3ALYGRmCCA353iO0-y8nSNJ0/view?usp=sharing
 
 
 def play_word_scramble():
@@ -35,6 +34,7 @@ def play_word_scramble():
     correct_array = []
     wrong_array = []
     attempts_array = []
+    total_array =[]
     regex = '^[a-zA-Z._%+*()&^%$#@!_+|<>?~-]*$'
     input_warning_string ='(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO or type \'exit\' to quit)' 
     exit_string = '(type \'exit\' to quit game)'
@@ -55,6 +55,7 @@ def play_word_scramble():
         final_string = ''
         for x in shuffled:
             final_string = final_string + x
+        total_array.append(1)
         return final_string,chosen_word
     
     
@@ -114,17 +115,12 @@ def play_word_scramble():
                 print(f'\n{input_warning_string}')
                 continue
             
-            
-
     def print_final_score(correct, wrong, attempts):
         '''Prints score between rounds and at end of the game. 
         Receives three arguments, the correct_answers array, wrong_answers array, and attempts_array'''
-        total = len(correct) + len(wrong)
+        total = len(total_array)
         print('\nYou played a total of:',total,'words')
-        print('You got',len(correct),'correct, you got',len(wrong),'incorrect')
-        print('and attempted a total of:',len(attempts),'times \n')
-     
-    
+        print('You got',len(correct),'attempts correct, and',len(wrong),'incorrect')
     
     def input_cleanser():
         '''(TLDR avoid Type errors) Gets input from user and makes sure it is the right type (), 
@@ -141,6 +137,8 @@ def play_word_scramble():
                 print('\n20 is the maximum word length,',message,'\n')
             else:
                 return user_word_length_choice
+
+    ###This while loop controls the programs "on" and "off" by monitoring the program_state truth value
         
     while(program_state):
        
@@ -148,7 +146,7 @@ def play_word_scramble():
             user_prompt_game_state = input(f'\nWant to play WORD-SCRAMBLE? {exit_string}\n')
         else:
             user_prompt_game_state = input(f'Want to play WORD-SCRAMBLE again? {exit_string} \n')
-        space()
+            space()
         if(user_prompt_game_state=='Y'or user_prompt_game_state=='y' or user_prompt_game_state=='YES' or user_prompt_game_state=='yes'):
             input_cleanser()
             space()
