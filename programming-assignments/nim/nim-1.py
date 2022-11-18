@@ -27,7 +27,8 @@ def play_nim():
     nim_state={'a':10, 'b':10, 'c':10}
 
     def computer_play():
-        '''Simple AI to play nim. Arbitrarily picks a peg, and again arbitrarily picks an amount to remove'''
+        '''Simple AI to play nim. Arbitrarily picks a peg, checks how many left on the peg, again arbitrarily  
+        picks an amount to remove. Finally returns the peg and number to remove from the peg'''
         randomized_index = random.randint(0, 2)
         peg = ''
         if(randomized_index == 0):
@@ -37,11 +38,37 @@ def play_nim():
         elif(randomized_index == 2):
             peg='c'
         number_to_remove = random.randint(1, nim_state[peg])
-        return peg, number_to_remove
+        return [peg, number_to_remove]
+    
+    def update_board(peg,number_to_remove):
+        '''receives a peg and number_to_remove'''
+        ### subtract number to remove from original
+        current = nim_state[peg]
+        nim_state.update({peg:current-number_to_remove})
+        return nim_state
 
+    while(nim_state['a'] > 0 or nim_state['b'] > 0 or nim_state['c'] > 0):
+        turn_number = 0
+        if(turn_number%2==0):
+            peg = input('Pick peg a, b, or c\n')
+            amount_to_remove = int(input(f'How many rings to remove from peg {peg}?\n'))
+            update_board(peg,amount_to_remove)
+            print(f'Your move is {peg} {amount_to_remove}')
+            print(nim_state)
+            turn_number += 1
+        elif(turn_number%2 > 0):
+            computer_moves = computer_play()
+            update_board(computer_moves[0],computer_moves[1])
+            print(f'Computer move is {computer_moves[0]} {computer_moves[1]}')
+            print(nim_state)
+            turn_number += 1
    
     print(nim_state['a'],nim_state['b'],nim_state['c'])
-    print(computer_play())
+    test = computer_play()
+    print(update_board(test[0],test[1]))
+    test2 = computer_play()
+    print(update_board(test2[0],test2[1]))
+  
     ### while a,b,c are >0
     ### player 1 pick peg
     ### player 1 remove peg
