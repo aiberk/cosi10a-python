@@ -20,3 +20,14 @@
 # If you want to implement the winning strategy you may, but you only need to implement
 # the random strategy as described above for this assignment.
 
+def play_nim():
+    '''Game of nim'''
+    nim_state={'a':10, 'b':10, 'c':10}
+    ### while a,b,c are >0
+    ### player 1 pick peg
+    ### player 1 remove peg
+    ### check & update state
+    ### computer check smallest peg
+    ### computer remove random(1 to peg_rings) from peg
+     ### check & update state
+
