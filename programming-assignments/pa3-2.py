@@ -59,7 +59,8 @@ def play_word_scramble():
     
     
     def filter_list(word):
-        '''Filter method for filter() function. Gets array of words and returns a new array containing words with the user defined length'''
+        '''Filter method for filter() function. Gets array of words and returns a new array 
+        containing words with the user defined length'''
         if(len(word)==int(user_word_length_choice)):
             return True
         else:
@@ -71,10 +72,8 @@ def play_word_scramble():
     
     def round_and_score_control(filtered_word_list):
         '''Receives a tuple from prompt_generator() containing a string and a shuffled version of that string's characters. 
-        It then asks the user to guess the original string by printing out the shuffled version
-        as a hint. After getting input back from the user it checks if the user_guess and original string match, 
-        if they don't the user is given as many chances as they like to guess. Once the guess is satisfactory 
-        or the user chooses to give up, the function gives back control to the main while loop'''
+        It then asks the user to guess the original string by printing out the shuffled version. 
+        After getting input back from the user it checks if the user_guess and original string match. '''
         user_success=False
         prompt = filtered_word_list[0]
         answer = filtered_word_list[1]
@@ -96,7 +95,8 @@ def play_word_scramble():
                 user_success=try_again(answer,prompt,user_guess)
     
     def try_again(answer,prompt,user_guess):
-        '''Allows user to try the same question. should return user_success===False and somehow restart while loop use 'continue' '''
+        '''Handles trying a problem n times. Returns user_success==False to try again, 
+        and user_success=True to stop.' '''
         block_complete = False
         print(f'{user_guess} is incorrect :(')
         while(block_complete == False):
@@ -127,7 +127,8 @@ def play_word_scramble():
     
     
     def input_cleanser():
-        '''(TLDR avoid Type errors) Gets input from user and makes sure it is the right type (), if the input is NOT the right type it will prompt user again'''
+        '''(TLDR avoid Type errors) Gets input from user and makes sure it is the right type (), 
+        if the input is NOT the right type it will prompt user again'''
         input_clean = False
         message = 'please add a number between 1-20'
         global user_word_length_choice
