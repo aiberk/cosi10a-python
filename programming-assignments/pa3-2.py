@@ -16,10 +16,8 @@
 # how many words they unscrambled of each length and how many they gave up on.
 
 ####TO DO######
-###Fix try again loop with try_again() function (make it from scratch)
-#### Erase DEBUG prints
-#### Add better LUI for users (Input Options)
 ###Add symbols to REGEX
+###Fix total counter
 
 
 '''
@@ -38,7 +36,7 @@ def play_word_scramble():
     wrong_array = []
     attempts_array = []
     regex = '^[a-zA-Z]*$'
-    input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO or type \'exit\' to quit)' 
+    input_warning_string ='(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO or type \'exit\' to quit)' 
     exit_string = '(type \'exit\' to quit game)'
 
      #Load word dictionary ONE time when initialized to avoid reopening and closing
@@ -95,35 +93,28 @@ def play_word_scramble():
             else:
                 attempts_array.append(prompt)
                 wrong_array.append([prompt,answer])
-                try_again = input(f'\n{user_guess} is incorrect :( Want to try again? {input_warning_string}\n')
-                if(try_again=='N' or try_again=='n'):
-                    print('\nThe answer was:',answer)
-                    print_final_score(correct_array,wrong_array,attempts_array)
-                    user_success =True
-                elif(try_again=='Y' or try_again=='y'):
-                    user_success==False
-                elif(try_again =='exit'):
-                    exit()
-                else:
-                    print('\n',input_warning_string)
-                    user_success==False
+                user_success=try_again(answer,prompt,user_guess)
     
-    def try_again(answer,prompt):
+    def try_again(answer,prompt,user_guess):
         '''Allows user to try the same question. should return user_success===False and somehow restart while loop use 'continue' '''
-        print(f'{prompt} is incorrect :(')
-        try_again = input(f'\n Want to try again? {exit_string}\n')
-        if(try_again=='N' or try_again=='n'):
-            wrong_array.append([prompt,answer])
-            print('\nThe answer was:',answer)
-            print_final_score(correct_array,wrong_array,attempts_array)
-            user_success =True
-        elif(try_again=='Y' or try_again=='y'):
-            user_success==False
-        elif(try_again =='exit'):
-            exit()
-        else:
-            print('\n',input_warning_string)
-            user_success==False
+        block_complete = False
+        print(f'{user_guess} is incorrect :(')
+        while(block_complete == False):
+            try_again = input(f'\nWant to try again? {exit_string}\n')
+            if(try_again=='N' or try_again=='n'):
+                wrong_array.append([prompt,answer])
+                print('\nThe answer was:',answer)
+                print_final_score(correct_array,wrong_array,attempts_array)
+                return True
+            elif(try_again=='Y' or try_again=='y'):
+                return False
+            elif(try_again =='exit'):
+                exit()
+            else:
+                print(f'\n{input_warning_string}')
+                continue
+            
+            
 
     def print_final_score(correct, wrong, attempts):
         '''Prints score between rounds and at end of the game. 
