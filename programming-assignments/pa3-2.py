@@ -15,7 +15,7 @@
 # The program should let the user continue until they want to quit and then tell them
 # how many words they unscrambled of each length and how many they gave up on.
 
-####TODO######
+####TO DO######
 ###Fix try again loop with try_again() function (make it from scratch)
 #### Erase DEBUG prints
 #### Add better LUI for users (Input Options)
