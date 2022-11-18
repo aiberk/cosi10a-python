@@ -107,6 +107,10 @@ def play_word_scramble():
                 else:
                     print('\n',input_warning_string)
                     user_success==False
+    
+    def try_again():
+        '''Allows user to try the same question. should return user_success===False and somehow restart while loop use 'continue' '''
+        print('I tried')
 
     def print_final_score(correct, wrong, attempts):
         '''Prints score between rounds and at end of the game. 
