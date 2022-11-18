@@ -20,14 +20,35 @@
 # If you want to implement the winning strategy you may, but you only need to implement
 # the random strategy as described above for this assignment.
 
+import random
+
 def play_nim():
     '''Game of nim'''
     nim_state={'a':10, 'b':10, 'c':10}
+
+    def computer_play():
+        '''Simple AI to play nim. Arbitrarily picks a peg, and again arbitrarily picks an amount to remove'''
+        randomized_index = random.randint(0, 2)
+        peg = ''
+        if(randomized_index == 0):
+            peg = 'a'
+        elif(randomized_index == 1):
+            peg='b'
+        elif(randomized_index == 2):
+            peg='c'
+        number_to_remove = random.randint(1, nim_state[peg])
+        return peg, number_to_remove
+
+   
+    print(nim_state['a'],nim_state['b'],nim_state['c'])
+    print(computer_play())
     ### while a,b,c are >0
     ### player 1 pick peg
     ### player 1 remove peg
     ### check & update state
     ### computer check smallest peg
     ### computer remove random(1 to peg_rings) from peg
-     ### check & update state
+    ### check & update state
+
+play_nim()
 
