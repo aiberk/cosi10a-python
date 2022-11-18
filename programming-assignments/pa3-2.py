@@ -35,7 +35,7 @@ def play_word_scramble():
     correct_array = []
     wrong_array = []
     attempts_array = []
-    regex = '^[a-zA-Z]*$'
+    regex = '^[a-zA-Z._%+*()&^%$#@!_+|<>?~-]*$'
     input_warning_string ='(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO or type \'exit\' to quit)' 
     exit_string = '(type \'exit\' to quit game)'
 
@@ -136,7 +136,7 @@ def play_word_scramble():
             user_word_length_choice = input('What word length?(20 MAX)\n')
             input_checker = re.search(regex,user_word_length_choice)
             if(input_checker):
-                print('\nLetters are not permitted,',message, '\n')
+                print('\nLetters and symbols are not permitted,',message,'\n')
             elif(int(user_word_length_choice)>=20):
                 print('\n20 is the maximum word length,',message,'\n')
             else:
