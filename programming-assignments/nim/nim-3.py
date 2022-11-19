@@ -28,6 +28,7 @@
 # This version has the following improvements:
 #   - The program's Computer has a simple strategy: always play the peg with largest amount of rings. 
 #   - Added DOCSTRINGS to all functions
+#   - Fixed updateBoard() to fit game rules exactly
 
 import random
 import re
@@ -43,7 +44,7 @@ def play_nim():
         print(f'NIM State: {nim_state}\n')
 
     def strategic_computer_play():
-        '''Simple but logical AI to play nim. Picks peg with most rings, then arbitrarily 
+        '''Simple strategy AI to play nim. Picks peg with most rings, then arbitrarily 
         picks an amount to remove. Finally returns the peg and number to remove from the peg'''
         peg = ''
         if(nim_state['a'] >= nim_state['b'] and nim_state['a'] >= nim_state['c']):
@@ -60,7 +61,13 @@ def play_nim():
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''
         current = nim_state[peg]
-        nim_state.update({peg:current-number_to_remove})
+        temp_amount = current-number_to_remove
+        if(temp_amount<=0):
+            final_amount = 0
+        else:
+            final_amount=temp_amount
+
+        nim_state.update({peg:final_amount})
         return nim_state
     
     def declare_winner():

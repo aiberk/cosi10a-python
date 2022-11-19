@@ -20,7 +20,7 @@
 # If you want to implement the winning strategy you may, but you only need to implement
 # the random strategy as described above for this assignment.
 
-## nim-4.py
+## nim-5.py
 ## Aby Iberkleid
 
 
@@ -29,6 +29,10 @@
 #   - The program's Computer has a moderate difficulty strategy: always play the peg with largest amount of rings
 #   - and never leaves the the peg empty
 #   - This program also catches bad user input with input_cleaner() to prevent unintentional programming halting 
+
+## ToDo
+# Find nim strategy
+# Apply to strategy
 
 import random
 import re
