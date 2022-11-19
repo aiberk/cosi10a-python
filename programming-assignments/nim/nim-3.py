@@ -24,7 +24,7 @@
 ## Aby Iberkleid
 
 
-## This is the third version of the NIM game program. 
+## This is the fourth version of the NIM game program. 
 # This version has the following improvements:
 #   - The program's Computer has a simple strategy: always play the peg with largest amount of rings. 
 #   - Added DOCSTRINGS to all functions

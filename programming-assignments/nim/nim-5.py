@@ -24,7 +24,7 @@
 ## Aby Iberkleid
 
 
-## This is the fourth version of the NIM game program. 
+## This is the sixth version of the NIM game program. 
 # This version has the following improvements:
 #   - The program's Computer has a moderate difficulty strategy: always play the peg with largest amount of rings
 #   - and never leaves the the peg empty
@@ -51,7 +51,7 @@ def play_nim():
         '''Prints current score'''
         print(f'NIM State: {nim_state}\n')
 
-    def moderately_strategic_computer_play():
+    def highly_strategic_computer_play():
         '''Moderately strategic AI. Chooses the peg with the most rings, Picks a number between 1 and 1 less than 
         the amount of rings on the peg. If there is one left, the computer has no choice but to take it. 
         Returns the peg and number to remove from the peg'''
@@ -130,7 +130,7 @@ def play_nim():
             print_current_score()
         elif(len(turn_number_array)%2 > 0):
             #COMPUTER TURN
-            computer_moves = moderately_strategic_computer_play()
+            computer_moves = highly_strategic_computer_play()
             peg = computer_moves[0]
             amount_to_remove = computer_moves[1]
             update_board(peg,amount_to_remove)

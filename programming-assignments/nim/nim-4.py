@@ -24,7 +24,7 @@
 ## Aby Iberkleid
 
 
-## This is the fourth version of the NIM game program. 
+## This is the fifth version of the NIM game program. 
 # This version has the following improvements:
 #   - The program's Computer has a moderate difficulty strategy: always play the peg with largest amount of rings
 #   - and never leaves the the peg empty
