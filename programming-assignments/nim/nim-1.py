@@ -20,6 +20,18 @@
 # If you want to implement the winning strategy you may, but you only need to implement
 # the random strategy as described above for this assignment.
 
+## nim-1.py
+## Aby Iberkleid
+
+## TO DO
+## Add Description
+# fix lui to match reqs
+# create player_move function 
+#   - receives both peg in number in oneline
+#   - cleaned by regex
+#   - options to exit
+#   - add input strings.  
+
 import random
 
 def play_nim():
@@ -43,12 +55,10 @@ def play_nim():
         elif(randomized_index == 2):
             peg='c'
         number_to_remove = random.randint(1, 10)
-        # return [peg, number_to_remove]
-        return [peg, 10]
+        return [peg, number_to_remove]
     
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''
-        ### subtract number to remove from original
         current = nim_state[peg]
         nim_state.update({peg:current-number_to_remove})
         return nim_state
@@ -66,6 +76,7 @@ def play_nim():
     while(nim_state['a'] > 0 and nim_state['b'] > 0 and nim_state['c'] > 0):
         
         if(len(turn_number_array)%2==0):
+            #USER TURN
             print_current_score()
             peg = input('Pick peg a, b, or c\n')
             amount_to_remove = int(input(f'How many rings to remove from peg {peg}?\n'))
@@ -74,6 +85,7 @@ def play_nim():
             print(f'Your move is {peg} {amount_to_remove}')
 
         elif(len(turn_number_array)%2 > 0):
+            #COMPUTER TURN
             print_current_score()
             computer_moves = computer_play()
             update_board(computer_moves[0],computer_moves[1])
