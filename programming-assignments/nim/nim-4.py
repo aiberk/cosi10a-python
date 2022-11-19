@@ -28,6 +28,10 @@
 # This version has the following improvements:
 #   - The program's Computer has a simple strategy: alway play the peg with largest amount of rings. 
 
+# TODO
+# improve computer strategy in new function called strategic_computer_play()
+# always take from biggest of three pegs. 
+
 import random
 import re
 
@@ -105,4 +109,3 @@ def play_nim():
     declare_winner()
    
 play_nim()
-
