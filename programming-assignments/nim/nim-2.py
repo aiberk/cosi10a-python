@@ -84,8 +84,8 @@ def play_nim():
         print(line_separator)
 
     def player_move():
-        temp_variable = input('your move: ')
-        player_moves = temp_variable.split()
+        temp_variable = input('your move: ').replace(" ", "")
+        player_moves = [*temp_variable]
         print(f'removing {player_moves[1]} from {player_moves[0]} gives')
         return player_moves[0], int(player_moves[1])
         
@@ -108,7 +108,7 @@ def play_nim():
             peg = computer_moves[0]
             amount_to_remove = computer_moves[1]
             update_board(peg,amount_to_remove)
-            turn_number_array.append([computer_moves[0],computer_moves[1]])
+            turn_number_array.append([peg,amount_to_remove])
             print_current_score()
 
     declare_winner()
