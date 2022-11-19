@@ -28,6 +28,10 @@
 # This version has the following improvements:
 #   - The program accepts any combination of inputs from user. example: ('a10','a 10','10a','10 a')
 
+# TODO
+# improve computer strategy in new function called strategic_computer_play()
+# always take from biggest of three pegs. 
+
 import random
 import re
 
