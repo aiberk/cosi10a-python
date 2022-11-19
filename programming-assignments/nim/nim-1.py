@@ -27,12 +27,13 @@
 ## Add Description
 # fix lui to match reqs
 # create player_move function 
-#   - receives both peg in number in oneline
+#   - receives both peg in number in one line
 #   - cleaned by regex
 #   - options to exit
 #   - add input strings.  
 
 import random
+import re
 
 def play_nim():
     '''Game of nim'''
@@ -69,7 +70,12 @@ def play_nim():
         elif(len(turn_number_array)%2==1):
             print('Computer wins, a.k.a. you loose :(')
 
-
+    def player_move():
+        # your move:  b 10
+        # removing 10 from b gives
+        # NIM State {a:10, b:0, c:10}
+        player_moves = input('your move: ')
+        print(type(player_moves))
     
     print(line_separator)
     print('Let\'s play NIM!\n')
@@ -94,6 +100,7 @@ def play_nim():
             print(f'Computer move is {computer_moves[0]} {computer_moves[1]}')
 
     final_score()
+    player_move()
    
 play_nim()
 
