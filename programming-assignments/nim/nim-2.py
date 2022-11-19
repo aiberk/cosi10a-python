@@ -20,7 +20,7 @@
 # If you want to implement the winning strategy you may, but you only need to implement
 # the random strategy as described above for this assignment.
 
-## nim-1.py
+## nim-2.py
 ## Aby Iberkleid
 
 
@@ -32,9 +32,8 @@
 
 
 ## TO DO
-## Add Description
+## Change Description
 # fix lui to match reqs
-
 # nim-2
 # clean player input with regex
 #   - options to exit
@@ -50,6 +49,7 @@ def play_nim():
     line_separator='--------------------------------------------'
 
     def print_current_score():
+        '''Prints current score'''
         print(f'NIM State: {nim_state}\n')
 
     def computer_play():
@@ -75,6 +75,8 @@ def play_nim():
         return nim_state
     
     def declare_winner():
+        '''Declares winner. The method used is by tracking all moves and then counting them.
+        If there was an odd number of plays the second player loses and even for first player'''
         if(len(turn_number_array)%2==0):
             print('You win! Computer loses')
         elif(len(turn_number_array)%2==1):
@@ -100,12 +102,12 @@ def play_nim():
             update_board(peg,amount_to_remove)
             turn_number_array.append([peg,amount_to_remove])
             print_current_score()
-           
-
         elif(len(turn_number_array)%2 > 0):
             #COMPUTER TURN
             computer_moves = computer_play()
-            update_board(computer_moves[0],computer_moves[1])
+            peg = computer_moves[0]
+            amount_to_remove = computer_moves[1]
+            update_board(peg,amount_to_remove)
             turn_number_array.append([computer_moves[0],computer_moves[1]])
             print_current_score()
 
