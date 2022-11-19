@@ -23,13 +23,25 @@
 ## nim-1.py
 ## Aby Iberkleid
 
-# This is the second version of the NIM game program. 
+
+## This is the second version of the NIM game program. 
 # This version has the following improvements:
 #   - Output requirements are met
 #   - Custom functions handling user input
 #   - Less reliance on global variables
 
+
+## TO DO
+## Add Description
+# fix lui to match reqs
+
+# nim-2
+# clean player input with regex
+#   - options to exit
+#   - add input strings. 
+
 import random
+import re
 
 def play_nim():
     '''Game of nim'''
@@ -70,9 +82,6 @@ def play_nim():
         print(line_separator)
 
     def player_move():
-        # your move:  b 10
-        # removing 10 from b gives
-        # NIM State {a:10, b:0, c:10}
         temp_variable = input('your move: ')
         player_moves = temp_variable.split()
         print(f'removing {player_moves[1]} from {player_moves[0]} gives')
