@@ -53,7 +53,11 @@ def play_nim():
             peg='b'
         elif(nim_state['c'] >= nim_state['a'] and nim_state['c'] >= nim_state['b']):
             peg='c'
-        number_to_remove = random.randint(1, 10)
+        peg_value = nim_state[peg]
+        if(peg_value==1):
+            number_to_remove=1
+        elif(peg_value>1):
+            number_to_remove = random.randint(1,peg_value-1)
         print(f'Computer move: {peg} {number_to_remove}')
         print(f'removing {number_to_remove} from {peg} gives')
         return [peg, number_to_remove]

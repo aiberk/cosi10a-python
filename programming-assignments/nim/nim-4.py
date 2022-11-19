@@ -59,14 +59,22 @@ def play_nim():
         elif(nim_state['c'] >= nim_state['a'] and nim_state['c'] >= nim_state['b']):
             peg='c'
 
-        peg_value = nim_state[peg]
-        if(peg_value==1):
-            number_to_remove=1
-        elif(peg_value>1):
-            number_to_remove = random.randint(1,peg_value-1)
+        nim_sum = find_nim_sum()
+        if(nim_sum == 0):
+            number_to_remove = 1
+        elif(nim_sum >= 10):
+            number_to_remove = 9
+        else:
+            number_to_remove = nim_sum
+            
         print(f'Computer move: {peg} {number_to_remove}')
         print(f'removing {number_to_remove} from {peg} gives')
         return [peg, number_to_remove]
+    
+    def find_nim_sum():
+        '''Finds the nim-sum of the current game setup, and returns the value'''
+        nim_sum = nim_state['a'] ^ nim_state['b'] ^ nim_state['c']
+        return nim_sum
     
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''

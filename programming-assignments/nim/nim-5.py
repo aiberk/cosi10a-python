@@ -23,7 +23,6 @@
 ## nim-5.py
 ## Aby Iberkleid
 
-
 ## This is the sixth version of the NIM game program. 
 # This version has the following improvements:
 #   - The program's Computer has a moderate difficulty strategy: always play the peg with largest amount of rings
@@ -33,6 +32,10 @@
 ## ToDo
 # Find nim strategy
 # Apply to strategy
+
+## NIM Strategy
+# find nim sum
+# flip strategy on opponent
 
 import random
 import re
@@ -45,6 +48,7 @@ def play_nim():
     '''Game of nim'''
     nim_state={'a':10, 'b':10, 'c':10}
     turn_number_array = []
+    nim_sum_array=[]
     line_separator='--------------------------------------------'
 
     def print_current_score():
@@ -63,14 +67,23 @@ def play_nim():
         elif(nim_state['c'] >= nim_state['a'] and nim_state['c'] >= nim_state['b']):
             peg='c'
 
-        peg_value = nim_state[peg]
-        if(peg_value==1):
-            number_to_remove=1
-        elif(peg_value>1):
-            number_to_remove = random.randint(1,peg_value-1)
+        nim_sum = find_nim_sum()
+        if(nim_sum == 0):
+            number_to_remove = 1
+        elif(nim_sum >= 10):
+            number_to_remove = 9
+        else:
+            number_to_remove = nim_sum
         print(f'Computer move: {peg} {number_to_remove}')
         print(f'removing {number_to_remove} from {peg} gives')
         return [peg, number_to_remove]
+
+    def find_nim_sum():
+        '''Finds the nim-sum of the current game setup, and returns the value'''
+        nim_sum = nim_state['a'] ^ nim_state['b'] ^ nim_state['c']
+        return nim_sum
+        
+
     
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''
@@ -114,8 +127,6 @@ def play_nim():
         print("Example: a 12 or a12\n")
         player_move()
         
-        
-    
     print(line_separator)
     print('Let\'s play NIM!')
     while(nim_state['a'] + nim_state['b'] + nim_state['c'] > 0):
