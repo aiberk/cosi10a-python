@@ -26,6 +26,10 @@ def play_nim():
     '''Game of nim'''
     nim_state={'a':10, 'b':10, 'c':10}
     turn_number_array = []
+    line_separator='--------------------------------------------'
+
+    def print_current_score():
+        print(f'NIM_State: {nim_state}')
 
     def computer_play():
         '''Simple AI to play nim. Arbitrarily picks a peg, checks how many left on the peg, again arbitrarily  
@@ -39,7 +43,8 @@ def play_nim():
         elif(randomized_index == 2):
             peg='c'
         number_to_remove = random.randint(1, 10)
-        return [peg, number_to_remove]
+        # return [peg, number_to_remove]
+        return [peg, 10]
     
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''
@@ -47,38 +52,36 @@ def play_nim():
         current = nim_state[peg]
         nim_state.update({peg:current-number_to_remove})
         return nim_state
+    
+    def final_score():
+        if(len(turn_number_array)%2==0):
+            print('You win!! :)')
+        elif(len(turn_number_array)%2==1):
+            print('Computer wins, a.k.a. you loose :(')
 
-    while(nim_state['a'] > 0 or nim_state['b'] > 0 or nim_state['c'] > 0):
+
+    
+    print(line_separator)
+    print('Let\'s play NIM!\n')
+    while(nim_state['a'] > 0 and nim_state['b'] > 0 and nim_state['c'] > 0):
         
         if(len(turn_number_array)%2==0):
+            print_current_score()
             peg = input('Pick peg a, b, or c\n')
             amount_to_remove = int(input(f'How many rings to remove from peg {peg}?\n'))
             update_board(peg,amount_to_remove)
-            print(nim_state)
-            print(turn_number_array)
             turn_number_array.append([peg,amount_to_remove])
             print(f'Your move is {peg} {amount_to_remove}')
 
         elif(len(turn_number_array)%2 > 0):
+            print_current_score()
             computer_moves = computer_play()
             update_board(computer_moves[0],computer_moves[1])
             print(len(turn_number_array))
             turn_number_array.append([computer_moves[0],computer_moves[1]])
             print(f'Computer move is {computer_moves[0]} {computer_moves[1]}')
-   
-    print(nim_state['a'],nim_state['b'],nim_state['c'])
-    test = computer_play()
-    print(update_board(test[0],test[1]))
-    test2 = computer_play()
-    print(update_board(test2[0],test2[1]))
-  
-    ### while a,b,c are >0
-    ### player 1 pick peg
-    ### player 1 remove peg
-    ### check & update state
-    ### computer check smallest peg
-    ### computer remove random(1 to peg_rings) from peg
-    ### check & update state
 
+    final_score()
+   
 play_nim()
 
