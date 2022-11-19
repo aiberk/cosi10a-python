@@ -41,7 +41,7 @@ def play_nim():
         '''Prints current score'''
         print(f'NIM State: {nim_state}\n')
 
-    def strategic_computer_play():
+    def highly_strategic_computer_play():
         '''Simple but logical AI to play nim. Picks peg with most rings, then arbitrarily 
         picks an amount to remove. Finally returns the peg and number to remove from the peg'''
         peg = ''
@@ -97,7 +97,7 @@ def play_nim():
             print_current_score()
         elif(len(turn_number_array)%2 > 0):
             #COMPUTER TURN
-            computer_moves = strategic_computer_play()
+            computer_moves = highly_strategic_computer_play()
             peg = computer_moves[0]
             amount_to_remove = computer_moves[1]
             update_board(peg,amount_to_remove)
