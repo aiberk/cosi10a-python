@@ -26,7 +26,7 @@
 
 ## This is the third version of the NIM game program. 
 # This version has the following improvements:
-#   - The program's Computer has a simple strategy: alway play the peg with largest amount of rings. 
+#   - The program's Computer has a simple strategy: always play the peg with largest amount of rings. 
 #   - Added DOCSTRINGS to all functions
 
 import random
@@ -86,7 +86,7 @@ def play_nim():
     
     print(line_separator)
     print('Let\'s play NIM!')
-    while(nim_state['a'] > 0 and nim_state['b'] > 0 and nim_state['c'] > 0):
+    while(nim_state['a'] + nim_state['b'] + nim_state['c'] > 0):
         print_current_score()
         if(len(turn_number_array)%2==0):
             #USER TURN

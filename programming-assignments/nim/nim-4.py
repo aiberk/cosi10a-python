@@ -93,7 +93,7 @@ def play_nim():
     
     print(line_separator)
     print('Let\'s play NIM!')
-    while(nim_state['a'] > 0 and nim_state['b'] > 0 and nim_state['c'] > 0):
+    while(nim_state['a'] + nim_state['b'] + nim_state['c'] > 0):
         print_current_score()
         if(len(turn_number_array)%2==0):
             #USER TURN
