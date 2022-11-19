@@ -24,20 +24,9 @@
 ## Aby Iberkleid
 
 
-## This is the second version of the NIM game program. 
+## This is the third version of the NIM game program. 
 # This version has the following improvements:
-#   - Output requirements are met
-#   - Custom functions handling user input
-#   - Less reliance on global variables
-
-
-## TO DO
-## Change Description
-# fix lui to match reqs
-# nim-2
-# clean player input with regex
-#   - options to exit
-#   - add input strings. 
+#   - The program accepts any combination of inputs from user. example: ('a10','a 10','10a','10 a')
 
 import random
 import re
@@ -46,6 +35,8 @@ def play_nim():
     '''Game of nim'''
     nim_state={'a':10, 'b':10, 'c':10}
     turn_number_array = []
+    regex ='[abc]'
+    regex2 = '[0-9]'
     line_separator='--------------------------------------------'
 
     def print_current_score():
@@ -85,9 +76,10 @@ def play_nim():
 
     def player_move():
         temp_variable = input('your move: ').replace(" ", "")
-        player_moves = [*temp_variable]
-        print(f'removing {player_moves[1]} from {player_moves[0]} gives')
-        return player_moves[0], int(player_moves[1])
+        peg = re.findall(regex,temp_variable)
+        amount_to_remove = int("".join(re.findall(regex2,temp_variable)))
+        print(f'removing {peg[0]} from {amount_to_remove} gives')
+        return peg[0], amount_to_remove
         
     
     print(line_separator)
