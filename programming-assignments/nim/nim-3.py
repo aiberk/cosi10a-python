@@ -27,6 +27,7 @@
 ## This is the third version of the NIM game program. 
 # This version has the following improvements:
 #   - The program's Computer has a simple strategy: alway play the peg with largest amount of rings. 
+#   - Added DOCSTRINGS to all functions
 
 import random
 import re
@@ -35,8 +36,6 @@ def play_nim():
     '''Game of nim'''
     nim_state={'a':10, 'b':10, 'c':10}
     turn_number_array = []
-    regex ='[abc]'
-    regex2 = '[0-9]'
     line_separator='--------------------------------------------'
 
     def print_current_score():
@@ -44,8 +43,8 @@ def play_nim():
         print(f'NIM State: {nim_state}\n')
 
     def strategic_computer_play():
-        '''Simple but logical AI to play nim. Picks peg with most rings, then arbitrarily picks an amount to remove. 
-        Finally returns the peg and number to remove from the peg'''
+        '''Simple but logical AI to play nim. Picks peg with most rings, then arbitrarily 
+        picks an amount to remove. Finally returns the peg and number to remove from the peg'''
         peg = ''
         if(nim_state['a'] >= nim_state['b'] and nim_state['a'] >= nim_state['c']):
             peg = 'a'
@@ -74,6 +73,10 @@ def play_nim():
         print(line_separator)
 
     def player_move():
+        '''Asks user to pick a move. The function corrects for any extra spaces and returns a tuple
+        made out of a string and integer'''
+        regex ='[abc]'
+        regex2 = '[0-9]'
         temp_variable = input('your move: ').replace(" ", "")
         peg = re.findall(regex,temp_variable)
         amount_to_remove = int("".join(re.findall(regex2,temp_variable)))
