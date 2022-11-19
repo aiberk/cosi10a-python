@@ -34,9 +34,9 @@ import re
 # Python program to show
 # bitwise operators
  
-a = 10
-b = 6
-c = 6
+a = 2
+b = 2
+c = 1
  
 # Print bitwise AND operation
 print("a & b =", a & b)

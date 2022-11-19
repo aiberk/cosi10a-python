@@ -69,7 +69,7 @@ def play_nim():
 
         nim_sum = find_nim_sum()
         if(nim_sum == 0):
-            number_to_remove = 1
+            number_to_remove = nim_state[peg]
         elif(nim_sum >= 10):
             number_to_remove = 9
         else:
