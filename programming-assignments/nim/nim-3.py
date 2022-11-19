@@ -62,6 +62,21 @@ def play_nim():
         print(f'Computer move: {peg} {number_to_remove}')
         print(f'removing {number_to_remove} from {peg} gives')
         return [peg, number_to_remove]
+
+    def strategic_computer_play():
+        '''Simple but logical AI to play nim. Picks peg with most rings, then arbitrarily picks an amount to remove. 
+        Finally returns the peg and number to remove from the peg'''
+        peg = ''
+        if(nim_state['a'] >= nim_state['b'] and nim_state['a'] >= nim_state['c']):
+            peg = 'a'
+        elif(nim_state['b'] >= nim_state['a'] and nim_state['b'] >= nim_state['c']):
+            peg='b'
+        elif(nim_state['c'] >= nim_state['a'] and nim_state['c'] >= nim_state['b']):
+            peg='c'
+        number_to_remove = random.randint(1, 10)
+        print(f'Computer move: {peg} {number_to_remove}')
+        print(f'removing {number_to_remove} from {peg} gives')
+        return [peg, number_to_remove]
     
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''
@@ -100,7 +115,7 @@ def play_nim():
             print_current_score()
         elif(len(turn_number_array)%2 > 0):
             #COMPUTER TURN
-            computer_moves = computer_play()
+            computer_moves = strategic_computer_play()
             peg = computer_moves[0]
             amount_to_remove = computer_moves[1]
             update_board(peg,amount_to_remove)
