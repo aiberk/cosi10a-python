@@ -50,8 +50,8 @@ def play_nim():
         print(f'NIM State: {nim_state}\n')
 
     def highly_strategic_computer_play():
-        '''Simple but logical AI to play nim. Picks peg with most rings, then arbitrarily 
-        picks an amount to remove. Finally returns the peg and number to remove from the peg'''
+        '''Highly strategic AI. Calculates the xor product of the pegs and then plays the 
+        strategy takes it to a NIM-SUM to corner the player. Returns the peg and number to remove from the peg'''
         peg = ''
         if(nim_state['a'] >= nim_state['b'] and nim_state['a'] >= nim_state['c']):
             peg = 'a'
