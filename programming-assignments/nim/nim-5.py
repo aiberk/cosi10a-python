@@ -32,12 +32,12 @@
 ## ToDo
 # Find nim strategy
 # Apply to strategy
+# Add exit option in player input
 
 ## NIM Strategy
 # find nim sum
 # flip strategy on opponent
 
-import random
 import re
 
 '''
@@ -82,8 +82,6 @@ def play_nim():
         '''Finds the nim-sum of the current game setup, and returns the value'''
         nim_sum = nim_state['a'] ^ nim_state['b'] ^ nim_state['c']
         return nim_sum
-        
-
     
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''

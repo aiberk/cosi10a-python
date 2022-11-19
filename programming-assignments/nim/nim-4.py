@@ -30,7 +30,6 @@
 #   - and never leaves the the peg empty
 #   - This program also catches bad user input with input_cleaner() to prevent unintentional programming halting 
 
-import random
 import re
 
 '''
@@ -61,12 +60,12 @@ def play_nim():
 
         nim_sum = find_nim_sum()
         if(nim_sum == 0):
-            number_to_remove = 1
+            number_to_remove = 10
         elif(nim_sum >= 10):
             number_to_remove = 9
         else:
             number_to_remove = nim_sum
-            
+
         print(f'Computer move: {peg} {number_to_remove}')
         print(f'removing {number_to_remove} from {peg} gives')
         return [peg, number_to_remove]
@@ -117,8 +116,6 @@ def play_nim():
         print(f'{user_input} is not an acceptable input please use \'a\', \'b\', or \'c\' + a number.')
         print("Example: a 12 or a12\n")
         player_move()
-        
-        
     
     print(line_separator)
     print('Let\'s play NIM!')
