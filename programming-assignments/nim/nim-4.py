@@ -28,6 +28,10 @@
 # This version has the following improvements:
 #   - The program's Computer has a simple strategy: alway play the peg with largest amount of rings. 
 
+## ToDo
+# Find nim strategy
+# Apply to strategy
+
 import random
 import re
 
