@@ -49,6 +49,5 @@
 # removing 1 from a gives
 # NIM State {a:0, b:0, c:0}
 
-# You win! Computer loses.
 # --------------------------------------------
 # # Note that the user move is a string consisting of a letter a,b,or c  followed by some white space, and a number

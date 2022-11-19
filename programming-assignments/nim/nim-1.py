@@ -31,6 +31,9 @@
 #   - cleaned by regex
 #   - options to exit
 #   - add input strings.  
+# nim-2
+# clean player input with regex
+#
 
 import random
 import re
@@ -42,7 +45,7 @@ def play_nim():
     line_separator='--------------------------------------------'
 
     def print_current_score():
-        print(f'NIM_State: {nim_state}')
+        print(f'NIM State: {nim_state}\n')
 
     def computer_play():
         '''Simple AI to play nim. Arbitrarily picks a peg, checks how many left on the peg, again arbitrarily  
@@ -56,6 +59,8 @@ def play_nim():
         elif(randomized_index == 2):
             peg='c'
         number_to_remove = random.randint(1, 10)
+        print(f'Computer move: {peg} {number_to_remove}')
+        print(f'removing {number_to_remove} from {peg} gives')
         return [peg, number_to_remove]
     
     def update_board(peg,number_to_remove):
@@ -64,43 +69,45 @@ def play_nim():
         nim_state.update({peg:current-number_to_remove})
         return nim_state
     
-    def final_score():
+    def declare_winner():
         if(len(turn_number_array)%2==0):
-            print('You win!! :)')
+            print('You win! Computer loses')
         elif(len(turn_number_array)%2==1):
-            print('Computer wins, a.k.a. you loose :(')
+            print('Computer wins! Player loses')
+        print(line_separator)
 
     def player_move():
         # your move:  b 10
         # removing 10 from b gives
         # NIM State {a:10, b:0, c:10}
-        player_moves = input('your move: ')
-        print(type(player_moves))
+        temp_variable = input('your move: ')
+        player_moves = temp_variable.split()
+        print(f'removing {player_moves[1]} from {player_moves[0]} gives')
+        return player_moves[0], int(player_moves[1])
+        
     
     print(line_separator)
-    print('Let\'s play NIM!\n')
+    print('Let\'s play NIM!')
     while(nim_state['a'] > 0 and nim_state['b'] > 0 and nim_state['c'] > 0):
-        
+        print_current_score()
         if(len(turn_number_array)%2==0):
             #USER TURN
-            print_current_score()
-            peg = input('Pick peg a, b, or c\n')
-            amount_to_remove = int(input(f'How many rings to remove from peg {peg}?\n'))
+            player_moves = player_move()
+            peg = player_moves[0]
+            amount_to_remove = player_moves[1]
             update_board(peg,amount_to_remove)
             turn_number_array.append([peg,amount_to_remove])
-            print(f'Your move is {peg} {amount_to_remove}')
+            print_current_score()
+           
 
         elif(len(turn_number_array)%2 > 0):
             #COMPUTER TURN
-            print_current_score()
             computer_moves = computer_play()
             update_board(computer_moves[0],computer_moves[1])
-            print(len(turn_number_array))
             turn_number_array.append([computer_moves[0],computer_moves[1]])
-            print(f'Computer move is {computer_moves[0]} {computer_moves[1]}')
+            print_current_score()
 
-    final_score()
-    player_move()
+    declare_winner()
    
 play_nim()
 
