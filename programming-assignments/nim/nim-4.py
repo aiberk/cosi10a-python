@@ -35,6 +35,10 @@
 import random
 import re
 
+'''
+NIM Game
+'''
+
 def play_nim():
     '''Game of nim'''
     nim_state={'a':10, 'b':10, 'c':10}

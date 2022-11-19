@@ -24,7 +24,6 @@ def binomial_practice_program():
     wrong_array = []
     wrong_answers_array = []
     correct_answers_for_wrong =[]
-    separator_lines = '------\n'
     input_warning_string = '(Please enter \'Y\' or \'y\' for YES, & \'N\' or \'n\' for NO)' 
     input_sample_string = '(example: x^2+x+1)' 
 
