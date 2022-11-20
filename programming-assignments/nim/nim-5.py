@@ -48,8 +48,16 @@ def play_nim():
     '''Game of nim'''
     nim_state={'a':10, 'b':10, 'c':10}
     turn_number_array = []
-    nim_sum_array=[]
+    nim_zero_array=[]
     line_separator='--------------------------------------------'
+
+    def populate_nim_zero_array():
+        '''Creates an array of precomputed nim sums that are equal to zero. For the computer's use in the game'''
+        for x in range(11):
+            for y in range(11):
+                for z in range(11):
+                    if(x^y^z==0):
+                        nim_zero_array.append([x,y,z])
 
     def print_current_score():
         '''Prints current score'''
@@ -70,13 +78,24 @@ def play_nim():
         nim_sum = find_nim_sum()
         if(nim_sum == 0):
             number_to_remove = nim_state[peg]
-        elif(nim_sum >= 10):
+        elif(nim_sum > 0):
             number_to_remove = 9
-        else:
-            number_to_remove = nim_sum
+        
         print(f'Computer move: {peg} {number_to_remove}')
         print(f'removing {number_to_remove} from {peg} gives')
         return [peg, number_to_remove]
+
+    def find_strategy(x,y,z):
+        for item in nim_zero_array:
+            if((item[0]==x and item[1]==y and item[2]<=z)):
+                difference = z - item[2]
+                return ['c',difference]
+            elif((item[0]==x and item[2]==z and item[1]<=y)):
+                difference = y - item[1]
+                return ['b',difference]
+            elif((item[1]==y and item[2]==z and item[0]<=x)):
+                difference = x - item[0]
+                return ['a',difference]
 
     def find_nim_sum():
         '''Finds the nim-sum of the current game setup, and returns the value'''
@@ -124,7 +143,9 @@ def play_nim():
         print(f'{user_input} is not an acceptable input please use \'a\', \'b\', or \'c\' + a number.')
         print("Example: a 12 or a12\n")
         player_move()
-        
+    
+
+    populate_nim_zero_array()
     print(line_separator)
     print('Let\'s play NIM!')
     while(nim_state['a'] + nim_state['b'] + nim_state['c'] > 0):
@@ -139,7 +160,8 @@ def play_nim():
             print_current_score()
         elif(len(turn_number_array)%2 > 0):
             #COMPUTER TURN
-            computer_moves = highly_strategic_computer_play()
+            computer_moves = find_strategy(nim_state['a'],nim_state['b'],nim_state['c'])
+            # print(computer_moves)
             peg = computer_moves[0]
             amount_to_remove = computer_moves[1]
             update_board(peg,amount_to_remove)
