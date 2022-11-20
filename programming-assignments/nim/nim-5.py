@@ -118,9 +118,9 @@ def play_nim():
         '''Declares winner. The method used is by tracking all moves and then counting them.
         If there was an odd number of plays the second player loses and even for first player'''
         if(len(turn_number_array)%2==0):
-            print('You win! Computer loses')
-        elif(len(turn_number_array)%2==1):
             print('Computer wins! Player loses')
+        elif(len(turn_number_array)%2==1):
+            print('You win! Computer loses')
         print(line_separator)
 
     def player_move():
@@ -151,14 +151,6 @@ def play_nim():
     while(nim_state['a'] + nim_state['b'] + nim_state['c'] > 0):
         print_current_score()
         if(len(turn_number_array)%2==0):
-            #USER TURN
-            player_moves = player_move()
-            peg = player_moves[0]
-            amount_to_remove = player_moves[1]
-            update_board(peg,amount_to_remove)
-            turn_number_array.append([peg,amount_to_remove])
-            print_current_score()
-        elif(len(turn_number_array)%2 > 0):
             #COMPUTER TURN
             computer_moves = find_strategy(nim_state['a'],nim_state['b'],nim_state['c'])
             # print(computer_moves)
@@ -167,6 +159,15 @@ def play_nim():
             update_board(peg,amount_to_remove)
             turn_number_array.append([peg,amount_to_remove])
             print_current_score()
+        elif(len(turn_number_array)%2 > 0):
+            #USER TURN
+            player_moves = player_move()
+            peg = player_moves[0]
+            amount_to_remove = player_moves[1]
+            update_board(peg,amount_to_remove)
+            turn_number_array.append([peg,amount_to_remove])
+            print_current_score()
+            
 
     declare_winner()
    
