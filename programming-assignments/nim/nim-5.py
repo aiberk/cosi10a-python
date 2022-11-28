@@ -29,14 +29,6 @@
 #   - and never leaves the the peg empty
 #   - This program also catches bad user input with input_cleaner() to prevent unintentional programming halting 
 
-## ToDo
-# Find nim strategy
-# Apply to strategy
-# Add exit option in player input
-
-## NIM Strategy
-# find nim sum
-# flip strategy on opponent
 
 import re
 
@@ -58,34 +50,13 @@ def play_nim():
                 for z in range(11):
                     if(x^y^z==0):
                         nim_zero_array.append([x,y,z])
-
+    
     def print_current_score():
         '''Prints current score'''
         print(f'NIM State: {nim_state}\n')
 
-    def highly_strategic_computer_play():
-        '''Moderately strategic AI. Chooses the peg with the most rings, Picks a number between 1 and 1 less than 
-        the amount of rings on the peg. If there is one left, the computer has no choice but to take it. 
-        Returns the peg and number to remove from the peg'''
-        peg = ''
-        if(nim_state['a'] >= nim_state['b'] and nim_state['a'] >= nim_state['c']):
-            peg = 'a'
-        elif(nim_state['b'] >= nim_state['a'] and nim_state['b'] >= nim_state['c']):
-            peg='b'
-        elif(nim_state['c'] >= nim_state['a'] and nim_state['c'] >= nim_state['b']):
-            peg='c'
-
-        nim_sum = find_nim_sum()
-        if(nim_sum == 0):
-            number_to_remove = nim_state[peg]
-        elif(nim_sum > 0):
-            number_to_remove = 9
-        
-        print(f'Computer move: {peg} {number_to_remove}')
-        print(f'removing {number_to_remove} from {peg} gives')
-        return [peg, number_to_remove]
-
     def find_strategy(x,y,z):
+        '''Goes through array of precomputed nim_zero computations to find next moves'''
         for item in nim_zero_array:
             if((item[0]==x and item[1]==y and item[2]<=z)):
                 difference = z - item[2]
@@ -97,11 +68,6 @@ def play_nim():
                 difference = x - item[0]
                 return ['a',difference]
 
-    def find_nim_sum():
-        '''Finds the nim-sum of the current game setup, and returns the value'''
-        nim_sum = nim_state['a'] ^ nim_state['b'] ^ nim_state['c']
-        return nim_sum
-    
     def update_board(peg,number_to_remove):
         '''receives a peg and number_to_remove'''
         current = nim_state[peg]
@@ -118,9 +84,9 @@ def play_nim():
         '''Declares winner. The method used is by tracking all moves and then counting them.
         If there was an odd number of plays the second player loses and even for first player'''
         if(len(turn_number_array)%2==0):
-            print('Computer wins! Player loses')
-        elif(len(turn_number_array)%2==1):
             print('You win! Computer loses')
+        elif(len(turn_number_array)%2==1):
+            print('Computer wins! Player loses')
         print(line_separator)
 
     def player_move():
@@ -151,19 +117,19 @@ def play_nim():
     while(nim_state['a'] + nim_state['b'] + nim_state['c'] > 0):
         print_current_score()
         if(len(turn_number_array)%2==0):
-            #COMPUTER TURN
-            computer_moves = find_strategy(nim_state['a'],nim_state['b'],nim_state['c'])
-            # print(computer_moves)
-            peg = computer_moves[0]
-            amount_to_remove = computer_moves[1]
-            update_board(peg,amount_to_remove)
-            turn_number_array.append([peg,amount_to_remove])
-            print_current_score()
-        elif(len(turn_number_array)%2 > 0):
             #USER TURN
             player_moves = player_move()
             peg = player_moves[0]
             amount_to_remove = player_moves[1]
+            update_board(peg,amount_to_remove)
+            turn_number_array.append([peg,amount_to_remove])
+            print_current_score()
+        elif(len(turn_number_array)%2 > 0):
+             #COMPUTER TURN
+            computer_moves = find_strategy(nim_state['a'],nim_state['b'],nim_state['c'])
+            # print(computer_moves)
+            peg = computer_moves[0]
+            amount_to_remove = computer_moves[1]
             update_board(peg,amount_to_remove)
             turn_number_array.append([peg,amount_to_remove])
             print_current_score()
