@@ -19,7 +19,7 @@ words = wordstring.split()
 game_words_array = []
 # Create array with approved words
 for word in words:
-    if (len(word)>=5 and word.islower):
+    if (len(word)<=2 and word.islower):
         game_words_array.append(word)
 
 def pickword(list_of_words):
@@ -35,14 +35,14 @@ def make_board(chosen_word):
     return (answer,hidden_answer)
 
 def update_board(answer,current_display,user_guess):
+    '''Checks for changes and updates on the board every user turn'''
     current_display_array = list(current_display)
     occurence_indeces = find_indices(answer,user_guess)
     if len(occurence_indeces)==0:
         return [current_display,False]
-    print("occurence",occurence_indeces)
     for index in occurence_indeces:
         current_display_array[index]=user_guess
-    return ["".join(current_display_array),True]
+    return ["".join(current_display_array),True,len(occurence_indeces)]
 
 def find_indices(list, element):
     '''Checks all occurences of an element (user's guess) in a list, and returns their indices'''
@@ -51,19 +51,42 @@ def find_indices(list, element):
         if value == element:
             indices.append(index)
     return indices
-       
+
+def check_game_state(current_display):
+    '''Checks is the user has won, by checking that there are no '_' in the display string '''
+    test = re.search("_", current_display)
+    if not test:
+        print("Wooo you win!")
+        user_input_continue = input("Want to play again?")
+        if(user_input_continue == 'y' or user_input_continue == 'Y'):
+            playgame(make_board(pickword(game_words_array)))
+        elif(user_input_continue == 'n' or user_input_continue == 'N'):
+            print("Goodbey!")
+            quit()
+
+    
+               
 def playgame(board):
     answer = board[0]
     current_display = "".join(board[1])
     player_attempts = 0
     while(player_attempts <= 7):
-        print("answer",answer,"currnt",current_display)
+        ### FOR DEBUG USE ###
+        print("answer",answer)
         print(current_display)
-        user_guess=input('Guess a letter')
+        print(f"{7-player_attempts} guesses left")
+        user_guess=input('next guess: ')
         updates = update_board(answer, current_display, user_guess)
         current_display = updates[0]
         if updates[1] == False:
             player_attempts = player_attempts + 1
+            print(f"sorry {user_guess} is not in the word")
+        elif updates[1] == True:
+            if updates[2]>1:
+                print(f'yes! {user_guess} appears {updates[2]} times')
+            else:
+                print(f'yes! {user_guess} appears {updates[2]} time')
+        check_game_state(current_display)
 
     
 
