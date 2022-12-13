@@ -28,43 +28,29 @@ def pickword(list_of_words):
 
 def make_board(chosen_word):
     '''Creates prints game board'''
-    answer = list(chosen_word)
-    hidden_answer = []
-    for letters in answer:
-        hidden_answer.append('_')
-    return (answer,hidden_answer)
+    for letters in chosen_word:
+        hidden_answer = hidden_answer + "_"
+    return (chosen_word,hidden_answer)
 
 def update_board(answer,current_display,user_guess):
     current_display_array = list(current_display)
-    occurence_indeces = find_indices(answer,user_guess)
-    if len(occurence_indeces)==0:
-        return [current_display,False]
-    print("occurence",occurence_indeces)
-    for index in occurence_indeces:
-        current_display_array[index]=user_guess
-    return ["".join(current_display_array),True]
-
-def find_indices(list, element):
-    '''Checks all occurences of an element (user's guess) in a list, and returns their indices'''
-    indices = []
-    for index, value in enumerate(list):
-        if value == element:
-            indices.append(index)
-    return indices
+    for letter in answer:
+        if letter == user_guess:
+            index = answer.index(letter)
+            current_display_array[index] = letter
+    return "".join(current_display_array)
        
 def playgame(board):
     answer = board[0]
-    current_display = "".join(board[1])
+    current_display = board[1]
     player_attempts = 0
-    while(player_attempts <= 7):
-        print("answer",answer,"currnt",current_display)
-        print(current_display)
+    while(player_attempts < 7):
+        print(answer)
+        print(current_display,'\n')
         user_guess=input('Guess a letter')
-        updates = update_board(answer, current_display, user_guess)
-        current_display = updates[0]
-        if updates[1] == False:
-            player_attempts = player_attempts + 1
-
+        player_attempts = player_attempts + 1
+        new_display = update_board(answer, current_display, user_guess)
+        current_display = new_display
     
 
 playgame(make_board(pickword(game_words_array)))
