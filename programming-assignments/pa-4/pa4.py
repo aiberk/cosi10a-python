@@ -71,9 +71,7 @@ def restart_game(state,answer):
     elif(clean_user_input_continue == 'n' or clean_user_input_continue == 'N'):
             print("bye")
             quit()
-
-    
-               
+  
 def playgame(board):
     answer = board[0]
     current_display = "".join(board[1])
