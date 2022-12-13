@@ -34,11 +34,12 @@ def make_board(chosen_word):
     return (answer,hidden_answer)
 
 def update_board(answer,current_display,user_guess):
-    print(current_display)
+    current_display_array = list(current_display)
     for letter in answer:
         if letter == user_guess:
             index = answer.index(letter)
-    return "Changed"
+            current_display_array[index] = letter
+    return "".join(current_display_array)
     
     
 
