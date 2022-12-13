@@ -60,6 +60,7 @@ def check_game_state(current_display):
         restart_game(True)
         
 def restart_game(state,answer):
+    '''Asks user if they want to continue playing after each round'''
     if(not state):
         print("!!!!!!!!!! You lost. !!!!!!!!!!")
         print(f'The word was {"".join(answer)}')
@@ -77,7 +78,7 @@ def playgame(board):
     answer = board[0]
     current_display = "".join(board[1])
     player_attempts = 0
-    while(player_attempts <= 7):
+    while(player_attempts < 7):
         ### FOR DEBUG USE ###
         # print("answer",answer)
         print(current_display)
