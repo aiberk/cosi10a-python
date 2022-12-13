@@ -33,11 +33,14 @@ def make_board(chosen_word):
         hidden_answer.append('_')
     return (answer,hidden_answer)
 
-def update_board(answer,current_board,user_guess):
+def update_board(answer,current_display,user_guess):
+    print(current_display)
     for letter in answer:
         if letter == user_guess:
-            print(answer.index(letter))
-    return ["Updated Board", user_guess, answer]
+            index = answer.index(letter)
+    return "Changed"
+    
+    
 
 def playgame(board):
     answer = board[0]
@@ -48,7 +51,8 @@ def playgame(board):
         print(current_display,'\n')
         user_guess=input('Guess a letter')
         player_attempts = player_attempts + 1
-        current_display = update_board(answer, current_display, user_guess)
+        new_display = update_board(answer, current_display, user_guess)
+        current_display = new_display
     
 
 playgame(make_board(pickword(game_words_array)))
