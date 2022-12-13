@@ -20,14 +20,40 @@ game_words_array = []
 for word in words:
     if (len(word)>=5 and word.islower):
         game_words_array.append(word)
-print(len(words))
-print(len(game_words_array))
+
 def pickword(list_of_words):
     '''Randomly picks word from list of words'''
-    max_range = len(game_words_array)
-    print(random.choice(list_of_words))
+    return random.choice(list_of_words)
 
-pickword(game_words_array)
+def make_board(chosen_word):
+    '''Creates prints game board'''
+    answer = list(chosen_word)
+    hidden_answer = []
+    for letters in answer:
+        hidden_answer.append('_')
+    return (answer,hidden_answer)
+
+def update_board(answer,current_board,user_guess):
+    for letter in answer:
+        if letter == user_guess:
+            print(answer.index(letter))
+    return ["Updated Board", user_guess, answer]
+
+def playgame(board):
+    answer = board[0]
+    current_display = "".join(board[1])
+    player_attempts = 0
+    while(player_attempts < 7):
+        print(answer)
+        print(current_display,'\n')
+        user_guess=input('Guess a letter')
+        player_attempts = player_attempts + 1
+        current_display = update_board(answer, current_display, user_guess)
+    
+
+playgame(make_board(pickword(game_words_array)))
+
+
 
 
 
