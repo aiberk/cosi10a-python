@@ -19,7 +19,7 @@ words = wordstring.split()
 game_words_array = []
 # Create array with approved words
 for word in words:
-    if (len(word)<=2 and word.islower):
+    if (len(word)>=5 and word.islower):
         game_words_array.append(word)
 
 def pickword(list_of_words):
@@ -27,7 +27,7 @@ def pickword(list_of_words):
     return random.choice(list_of_words)
 
 def make_board(chosen_word):
-    '''Creates prints game board'''
+    '''Create hidden word/ setups up board'''
     answer = list(chosen_word)
     hidden_answer = []
     for letters in answer:
@@ -56,12 +56,19 @@ def check_game_state(current_display):
     '''Checks is the user has won, by checking that there are no '_' in the display string '''
     test = re.search("_", current_display)
     if not test:
-        print("Wooo you win!")
-        user_input_continue = input("Want to play again?")
-        if(user_input_continue == 'y' or user_input_continue == 'Y'):
+        print("!!!!!!!!!! You won! !!!!!!!!!!")
+        restart_game(True)
+        
+def restart_game(state,answer):
+    if(not state):
+        print("!!!!!!!!!! You lost. !!!!!!!!!!")
+        print(f'The word was {"".join(answer)}')
+    user_input_continue = input("more? (y or n)")
+    clean_user_input_continue = user_input_continue.strip()
+    if(clean_user_input_continue == 'y' or clean_user_input_continue == 'Y'):
             playgame(make_board(pickword(game_words_array)))
-        elif(user_input_continue == 'n' or user_input_continue == 'N'):
-            print("Goodbey!")
+    elif(clean_user_input_continue == 'n' or clean_user_input_continue == 'N'):
+            print("bye")
             quit()
 
     
@@ -72,23 +79,29 @@ def playgame(board):
     player_attempts = 0
     while(player_attempts <= 7):
         ### FOR DEBUG USE ###
-        print("answer",answer)
+        # print("answer",answer)
         print(current_display)
         print(f"{7-player_attempts} guesses left")
         user_guess=input('next guess: ')
-        updates = update_board(answer, current_display, user_guess)
+        updates = update_board(answer, current_display, user_guess.strip())
         current_display = updates[0]
         if updates[1] == False:
             player_attempts = player_attempts + 1
-            print(f"sorry {user_guess} is not in the word")
+            print(f"sorry {user_guess} is not in the word \n")
         elif updates[1] == True:
             if updates[2]>1:
-                print(f'yes! {user_guess} appears {updates[2]} times')
+                print(f'yes! {user_guess} appears {updates[2]} times \n')
             else:
-                print(f'yes! {user_guess} appears {updates[2]} time')
+                print(f'yes! {user_guess} appears {updates[2]} time \n')
         check_game_state(current_display)
-
+    restart_game(False, answer)
     
+
+
+print("-"*40)
+print("Hangman!")
+print("guess the word one letter at a time")
+print("-"*40)
 
 playgame(make_board(pickword(game_words_array)))
 
